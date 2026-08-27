@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mahashivaji — Something is being built</title>
+<meta name="description" content="A platform and community taking shape for Maharashtra — exploring the forts anew, carrying Shivaji Maharaj's life and teachings forward, and helping its people rise together. We open in one week." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#15110A; --ink-2:#1E1810; --ink-3:#0A0806;
+    --parch:#ECE3D0; --parch-dim:#B7A987; --parch-faint:#7C7157;
+    --gold-hi:#F6DE9E; --gold:#D8B461; --gold-mid:#C29A45; --gold-deep:#9A7628;
+    --line:rgba(216,180,97,.22); --line-soft:rgba(216,180,97,.12);
+    --maxw:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ink);color:var(--parch);font-family:"Spectral",Georgia,serif;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .mr{font-family:"Tiro Devanagari Marathi",serif;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  a{color:inherit;}
+  .kicker{font-family:"Cinzel",serif;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .kicker .mr{letter-spacing:.04em;font-size:.85rem;color:var(--gold-hi);}
+
+  /* ---------------- HERO ---------------- */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:88px 28px 220px;overflow:hidden;}
+  .glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:min(880px,120vw);height:min(880px,120vw);
+    background:radial-gradient(circle,rgba(216,180,97,.20),rgba(216,180,97,.07) 34%,transparent 62%);pointer-events:none;z-index:0;}
+  /* faint Maharashtra outline watermark */
+  .map-wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-48%);width:min(760px,116vw);z-index:0;opacity:.07;pointer-events:none;}
+  .map-wm path{fill:none;stroke:var(--gold-hi);stroke-width:2.4;}
+
+  .hero-inner{position:relative;z-index:2;max-width:860px;}
+  .hero .kicker{display:block;margin-bottom:30px;animation:rise .9s ease both .1s;}
+  .logo-top{position:relative;width:clamp(230px,34vw,340px);margin:0 auto;display:block;
+    filter:drop-shadow(0 6px 26px rgba(216,180,97,.28));animation:rise 1s ease both .2s;}
+  .logo-shine{position:absolute;inset:0;pointer-events:none;
+    -webkit-mask:url('logo-top.png') center/contain no-repeat;mask:url('logo-top.png') center/contain no-repeat;
+    background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.7) 50%,transparent 60%);
+    background-size:260% 100%;background-position:180% 0;animation:sweep 1.5s ease-out 1s both;}
+  .rule{width:60px;height:1px;margin:34px auto 26px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:rise 1s ease both .35s;}
+  .headline{font-weight:400;font-size:clamp(1.32rem,3.2vw,2.05rem);line-height:1.34;max-width:22ch;margin:0 auto;animation:rise 1s ease both .4s;}
+  .headline em{font-style:italic;color:var(--gold-hi);}
+  .headline-mr{font-size:clamp(1.05rem,2.5vw,1.42rem);color:var(--gold);margin:14px auto 0;max-width:30ch;line-height:1.5;animation:rise 1s ease both .48s;}
+  .subline{margin:24px auto 0;max-width:58ch;font-size:1rem;color:var(--parch-dim);font-weight:300;animation:rise 1s ease both .54s;}
+  .subline-mr{margin:8px auto 0;max-width:52ch;font-size:.98rem;color:var(--parch-faint);animation:rise 1s ease both .58s;}
+
+  .cta-row{margin-top:38px;display:flex;flex-direction:column;align-items:center;gap:16px;animation:rise 1s ease both .64s;}
+  .btn{display:inline-block;cursor:pointer;border:none;font-family:"Cinzel",serif;font-weight:600;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:#241a08;
+    background:linear-gradient(180deg,var(--gold-hi),var(--gold-mid));padding:16px 42px;border-radius:2px;text-decoration:none;
+    box-shadow:0 6px 26px rgba(216,180,97,.28),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .25s,box-shadow .25s;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(216,180,97,.42),inset 0 1px 0 rgba(255,255,255,.4);}
+  .btn:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;}
+  .opening{font-size:.88rem;color:var(--parch-faint);}
+  .opening b{color:var(--gold);font-weight:500;}
+  .count{display:flex;gap:22px;margin-top:6px;}
+  .count .u{text-align:center;min-width:50px;}
+  .count .n{font-family:"Cinzel",serif;font-weight:600;font-size:1.6rem;color:var(--gold-hi);line-height:1;}
+  .count .l{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--parch-faint);margin-top:7px;}
+  .scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--parch-faint);animation:pulse 2.4s ease-in-out infinite;}
+
+  /* fort skyline horizon */
+  .skyline{position:absolute;left:0;right:0;bottom:-1px;z-index:1;width:100%;height:auto;display:block;pointer-events:none;}
+
+  /* ---------------- PURSUITS ---------------- */
+  .pursuits{position:relative;z-index:2;background:var(--ink);padding:26px 0 70px;}
+  .sec-head{text-align:center;margin-bottom:44px;}
+  .sec-head .kicker{display:block;margin-bottom:12px;}
+  .sec-head h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.4rem,3.4vw,2.15rem);color:var(--parch);}
+  .sec-head .h2mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);font-size:clamp(1.05rem,2.4vw,1.4rem);margin-top:8px;}
+
+  .plist{max-width:940px;margin:0 auto;}
+  .phead{display:grid;grid-template-columns:34px 1fr 1fr;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px;}
+  .phead span{font-family:"Cinzel",serif;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--parch-faint);}
+  .phead .l-en{grid-column:2;padding-left:6px;}
+  .phead .l-mr{grid-column:3;padding-left:28px;font-family:"Tiro Devanagari Marathi",serif;letter-spacing:.06em;}
+
+  .pitem{display:grid;grid-template-columns:34px 1fr 1fr;gap:0;padding:22px 0;border-bottom:1px solid var(--line-soft);
+    opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+  .pitem.in{opacity:1;transform:none;}
+  .pnum{font-family:"Cinzel",serif;font-size:.78rem;color:var(--gold-deep);padding-top:3px;}
+  .pen{padding:0 28px 0 6px;border-right:1px solid var(--line-soft);}
+  .pmr{padding:0 6px 0 28px;}
+  .pen h3{font-weight:500;font-size:1.16rem;color:var(--gold-hi);margin-bottom:5px;}
+  .pen p{color:var(--parch-dim);font-weight:300;font-size:.98rem;}
+  .pmr h3{font-family:"Tiro Devanagari Marathi",serif;font-size:1.12rem;color:var(--gold-hi);margin-bottom:5px;font-weight:400;}
+  .pmr p{font-family:"Tiro Devanagari Marathi",serif;color:var(--parch-dim);font-size:.96rem;line-height:1.7;}
+
+  /* ---------------- JOIN ---------------- */
+  .join{position:relative;text-align:center;padding:84px 28px 90px;background:radial-gradient(circle at 50% 0%,rgba(216,180,97,.10),transparent 58%),var(--ink-2);border-top:1px solid var(--line);}
+  .join .kicker{display:block;margin-bottom:16px;}
+  .join h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.4rem,3.6vw,2.1rem);color:var(--parch);max-width:24ch;margin:0 auto 6px;line-height:1.3;}
+  .join .h2mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);font-size:clamp(1.02rem,2.4vw,1.34rem);margin-bottom:22px;}
+  .join p.lead{max-width:54ch;margin:0 auto 6px;color:var(--parch-dim);font-weight:300;}
+  .join p.lead-mr{max-width:50ch;margin:0 auto 32px;color:var(--parch-faint);font-family:"Tiro Devanagari Marathi",serif;font-size:.96rem;}
+  form.signup{display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+  form.signup input{flex:1 1 240px;min-width:0;background:rgba(0,0,0,.28);border:1px solid var(--line);color:var(--parch);font-family:"Spectral",serif;font-size:1rem;padding:15px 18px;border-radius:2px;}
+  form.signup input::placeholder{color:var(--parch-faint);}
+  form.signup input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,180,97,.14);}
+  form.signup .btn{flex:0 0 auto;padding:15px 30px;}
+  .thanks{display:none;max-width:480px;margin:0 auto;font-size:1.04rem;color:var(--gold-hi);padding:18px 20px;border:1px solid var(--line);border-radius:2px;background:rgba(0,0,0,.2);}
+  .thanks .mr{display:block;color:var(--parch-dim);font-size:.92rem;margin-top:4px;}
+  .comeback{margin-top:26px;font-size:.9rem;color:var(--parch-faint);}
+  .comeback b{color:var(--gold);font-weight:500;}
+  .comeback .mr{display:block;margin-top:4px;}
+
+  /* ---------------- FOOTER ---------------- */
+  footer{position:relative;text-align:center;padding:60px 28px 56px;background:var(--ink-3);border-top:1px solid var(--line-soft);overflow:hidden;}
+  .medallion{width:clamp(150px,24vw,210px);height:auto;display:block;margin:0 auto 22px;position:relative;z-index:2;}
+  footer .site{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.82rem;color:var(--gold);position:relative;z-index:2;}
+  footer .jai{display:block;margin-top:16px;color:var(--gold-hi);font-size:1.24rem;position:relative;z-index:2;}
+  footer .made{display:block;margin-top:8px;font-size:.7rem;color:var(--parch-faint);letter-spacing:.06em;position:relative;z-index:2;}
+  footer .made .mr{color:var(--parch-faint);}
+
+  /* ---------------- motion ---------------- */
+  @keyframes rise{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+  @keyframes sweep{from{background-position:180% 0;}to{background-position:-90% 0;}}
+  @keyframes pulse{0%,100%{opacity:.4;}50%{opacity:.9;}}
+
+  @media (max-width:720px){
+    .phead{display:none;}
+    .pitem{grid-template-columns:1fr;gap:2px;padding:20px 0;}
+    .pnum{color:var(--gold);font-size:.72rem;letter-spacing:.12em;}
+    .pen{padding:8px 0 0;border-right:none;}
+    .pmr{padding:12px 0 0;border-top:1px solid var(--line-soft);margin-top:10px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none!important;transition:none!important;}
+    .pitem{opacity:1;transform:none;}
+    .logo-shine{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="glow"></div>
+
+  <!-- faint Maharashtra outline (stylized watermark) -->
+  <svg class="map-wm" viewBox="0 0 500 400" aria-hidden="true">
+    <path d="M150,72 C132,88 140,112 132,132 C124,156 112,166 110,196
+             C108,224 126,244 110,268 L142,280 C172,270 200,290 236,278
+             C270,266 300,294 338,284 C360,278 372,294 388,288 L412,326
+             L392,332 C402,302 404,272 418,250 C432,224 408,206 422,180
+             C432,156 402,150 404,120 C406,98 380,110 360,96
+             C330,84 300,106 268,92 C236,78 208,104 182,86
+             C170,78 160,72 150,72 Z"/>
+  </svg>
+
+  <div class="hero-inner">
+    <span class="kicker">Something is being built <span class="mr">· महाराष्ट्रासाठी</span></span>
+
+    <div style="position:relative;display:inline-block;">
+      <img class="logo-top" src="logo-top.png" alt="Mahashivaji" />
+      <span class="logo-shine" aria-hidden="true"></span>
+    </div>
+
+    <div class="rule"></div>
+
+    <h1 class="headline">His forts still stand. His way of thinking still leads. Let's carry it into a <em>new Maharashtra</em>.</h1>
+    <p class="headline-mr mr">त्यांचे गड आजही उभे आहेत. त्यांचा विचार आजही मार्ग दाखवतो. चला, तो नव्या महाराष्ट्रात पुढे नेऊया.</p>
+
+    <p class="subline">A platform and a community taking shape — to explore the forts anew, spread his life and teachings, protect our culture, and help the people of Maharashtra rise together.</p>
+    <p class="subline-mr mr">एक व्यासपीठ आणि एक समुदाय आकार घेत आहे — गड नव्याने अनुभवण्यासाठी, त्यांचे जीवन आणि विचार पसरवण्यासाठी, आपली संस्कृती जपण्यासाठी, आणि महाराष्ट्रातील माणसांना एकत्र पुढे नेण्यासाठी.</p>
+
+    <div class="cta-row">
+      <a href="#join" class="btn">Join us</a>
+      <div class="count" id="count" aria-label="Time until we open">
+        <div class="u"><div class="n" id="d">00</div><div class="l">Days</div></div>
+        <div class="u"><div class="n" id="h">00</div><div class="l">Hours</div></div>
+        <div class="u"><div class="n" id="m">00</div><div class="l">Minutes</div></div>
+      </div>
+      <p class="opening">We open in <b>one week</b>.</p>
+    </div>
+  </div>
+
+  <div class="scrollcue">Scroll</div>
+
+  <!-- fort skyline: hill fort, bastion, gateway, sea fort, flags -->
+  <svg class="skyline" viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#1E1810" d="M0,190 L0,150
+      L70,150 L86,150 C86,128 104,120 128,120 L128,150 L150,150 L150,120 L168,120 L168,150 L188,150
+      L188,104 L206,104 L206,86 L224,86 L224,104 L242,104 L242,150 L300,150
+      L300,150 C300,120 330,110 360,110 C390,110 420,120 420,150 L480,150
+      L480,110 L500,110 L500,150 L560,150
+      L560,96 L582,96 L582,150 L604,150 L604,72 C604,56 640,56 640,72 L640,150 L678,150 L678,96 L700,96 L700,150 L760,150
+      L760,124 L1040,124 L1040,150 L1080,150
+      L1080,150 C1080,116 1120,104 1150,104 C1180,104 1210,116 1210,150 L1250,150
+      L1250,150 C1250,120 1280,112 1300,112 L1300,90 L1318,90 L1318,72 L1336,72 L1336,90 L1354,90 L1354,150 L1440,150 L1440,190 Z"/>
+    <!-- gold top edge -->
+    <path fill="none" stroke="#D8B461" stroke-width="1.4" opacity=".5" d="M0,150
+      L86,150 C86,128 104,120 128,120 L128,150 M150,150 L150,120 L168,120 L168,150
+      M188,150 L188,104 L206,104 L206,86 L224,86 L224,104 L242,104 L242,150
+      M300,150 C300,120 330,110 360,110 C390,110 420,120 420,150
+      M480,150 L480,110 L500,110 L500,150
+      M560,150 L560,96 L582,96 L582,150 M604,150 L604,72 C604,56 640,56 640,72 L640,150 M678,150 L678,96 L700,96 L700,150
+      M760,150 L760,124 L1040,124 L1040,150
+      M1080,150 C1080,116 1120,104 1150,104 C1180,104 1210,116 1210,150
+      M1250,150 C1250,120 1280,112 1300,112 L1300,90 L1318,90 L1318,72 L1336,72 L1336,90 L1354,90 L1354,150"/>
+    <!-- sea-fort water line -->
+    <path fill="none" stroke="#D8B461" stroke-width="1" opacity=".3" d="M760,138 q14,-7 28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0"/>
+    <!-- flags -->
+    <g stroke="#D8B461" stroke-width="1.4" opacity=".7" fill="#D8B461">
+      <line x1="215" y1="86" x2="215" y2="64"/><path d="M215,66 L236,71 L215,76 Z"/>
+      <line x1="622" y1="56" x2="622" y2="34"/><path d="M622,36 L644,41 L622,46 Z"/>
+      <line x1="1327" y1="72" x2="1327" y2="50"/><path d="M1327,52 L1348,57 L1327,62 Z"/>
+    </g>
+  </svg>
+</header>
+
+<!-- ================= PURSUITS ================= -->
+<section class="pursuits">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">What we're setting out to do</span>
+      <h2>Six ways to carry it forward</h2>
+      <div class="h2mr mr">तो वारसा पुढे नेण्याचे सहा मार्ग</div>
+    </div>
+
+    <div class="plist" id="plist">
+      <div class="phead"><span class="l-en">In English</span><span class="l-mr mr">मराठीत</span></div>
+
+      <div class="pitem">
+        <div class="pnum">I</div>
+        <div class="pen"><h3>Explore the forts as never before</h3><p>Walk them, learn their true stories, and help protect them for the ones who come after.</p></div>
+        <div class="pmr mr"><h3>गड नव्याने अनुभवा</h3><p>त्यांवर चालत जा, त्यांच्या खऱ्या कथा जाणून घ्या, आणि पुढच्या पिढ्यांसाठी ते जपण्यास मदत करा.</p></div>
+      </div>
+
+      <div class="pitem">
+        <div class="pnum">II</div>
+        <div class="pen"><h3>Carry his life and teachings</h3><p>The real account, made alive and accessible for a new generation, in every corner of Maharashtra.</p></div>
+        <div class="pmr mr"><h3>त्यांचे जीवन आणि विचार पुढे न्या</h3><p>खरा इतिहास, नव्या पिढीसाठी जिवंत आणि सोप्या रूपात — महाराष्ट्राच्या कानाकोपऱ्यात.</p></div>
+      </div>
+
+      <div class="pitem">
+        <div class="pnum">III</div>
+        <div class="pen"><h3>Protect what makes us Marathi</h3><p>Our art, our food, our language and our crafts — safeguarded before they fade.</p></div>
+        <div class="pmr mr"><h3>आपली मराठी ओळख जपा</h3><p>आपली कला, खाद्य, भाषा आणि हस्तकला — लोप पावण्याआधी जपूया.</p></div>
+      </div>
+
+      <div class="pitem">
+        <div class="pnum">IV</div>
+        <div class="pen"><h3>Build for the future</h3><p>Local hubs where the young learn what will shape their lives — AI, robotics, energy and more.</p></div>
+        <div class="pmr mr"><h3>भविष्यासाठी उभारूया</h3><p>स्थानिक केंद्रे, जिथे तरुण शिकतील भविष्य घडवणारे — कृत्रिम बुद्धिमत्ता, रोबोटिक्स, ऊर्जा आणि बरेच काही.</p></div>
+      </div>
+
+      <div class="pitem">
+        <div class="pnum">V</div>
+        <div class="pen"><h3>Stand with our farmers</h3><p>Knowledge, tools and strength for the people who feed Maharashtra.</p></div>
+        <div class="pmr mr"><h3>शेतकऱ्यांच्या पाठीशी</h3><p>महाराष्ट्राला अन्न देणाऱ्यांसाठी ज्ञान, साधने आणि बळ.</p></div>
+      </div>
+
+      <div class="pitem">
+        <div class="pnum">VI</div>
+        <div class="pen"><h3>Learn to lead</h3><p>Discipline, strategy, and the courage to do things the right way — in school, work and life.</p></div>
+        <div class="pmr mr"><h3>नेतृत्व शिका</h3><p>शिस्त, रणनीती आणि योग्य मार्गाने काम करण्याचे धैर्य — शाळेत, कामात आणि जीवनात.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOIN ================= -->
+<section class="join" id="join">
+  <div class="wrap">
+    <span class="kicker">Be part of it <span class="mr">· यात सहभागी व्हा</span></span>
+    <h2>This is only the beginning — and it belongs to all of us.</h2>
+    <div class="h2mr mr">ही तर केवळ सुरुवात आहे — आणि ती आपल्या सर्वांची आहे.</div>
+    <p class="lead">Students, farmers, makers, teachers, dreamers — every Maharashtrian has a place here. Leave your name, and we'll show you how to take part.</p>
+    <p class="lead-mr mr">विद्यार्थी, शेतकरी, निर्माते, शिक्षक, स्वप्न पाहणारे — प्रत्येक मराठी माणसासाठी इथे जागा आहे. तुमचे नाव नोंदवा, सहभागी कसे व्हायचे ते आम्ही सांगू.</p>
+
+    <!-- To collect emails: point the form at your Google Form / Mailchimp / Formspree endpoint,
+         e.g. <form class="signup" action="https://formspree.io/f/XXXX" method="POST"> and remove the JS handler. -->
+    <form class="signup" id="signup" novalidate>
+      <input type="email" id="email" name="email" placeholder="Your email · तुमचा ईमेल" aria-label="Your email" required />
+      <button type="submit" class="btn">Count me in</button>
+    </form>
+    <div class="thanks" id="thanks">You're in. We'll show you how to join within the week.<span class="mr">तुमची नोंद झाली. आठवड्याभरात सहभागी कसे व्हायचे ते आम्ही कळवू.</span></div>
+
+    <p class="comeback">Visit us again in <b>one week</b>. Doors — and forts — are opening.<span class="mr">एका आठवड्याने पुन्हा भेट द्या. दरवाजे — आणि गड — उघडत आहेत.</span></p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="glow" style="top:auto;bottom:-30%;opacity:.5;"></div>
+  <img class="medallion" src="medallion.png" alt="Mahashivaji seal" />
+  <div class="site">mahashivaji.org</div>
+  <span class="jai mr">जय शिवराय</span>
+  <span class="made">Made in Maharashtra, for Maharashtra <span class="mr">· महाराष्ट्रासाठी</span></span>
+</footer>
+
+<script>
+  /* Countdown — set your real launch moment here (7 days out by default) */
+  var LAUNCH = new Date("2026-09-03T18:00:00+05:30").getTime();
+  var d=document.getElementById('d'),h=document.getElementById('h'),m=document.getElementById('m');
+  function pad(n){return (n<10?'0':'')+n;}
+  function tick(){
+    var diff=LAUNCH-Date.now();
+    if(diff<=0){d.textContent='00';h.textContent='00';m.textContent='00';
+      document.querySelector('.opening').innerHTML='We are <b>opening now</b>.';return;}
+    d.textContent=pad(Math.floor(diff/86400000));
+    h.textContent=pad(Math.floor(diff%86400000/3600000));
+    m.textContent=pad(Math.floor(diff%3600000/60000));
+  }
+  tick(); setInterval(tick,30000);
+
+  /* Reveal pursuits on scroll */
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.18});
+    document.querySelectorAll('.pitem').forEach(function(el,i){el.style.transitionDelay=(i*65)+'ms';io.observe(el);});
+  }else{document.querySelectorAll('.pitem').forEach(function(el){el.classList.add('in');});}
+
+  /* Signup (client-side confirm; connect to your email service to store) */
+  var form=document.getElementById('signup'),thanks=document.getElementById('thanks'),email=document.getElementById('email');
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var v=email.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){email.focus();email.style.borderColor='#c56';return;}
+    /* TODO: send v to your list (Formspree / Mailchimp / Google Form) */
+    form.style.display='none';thanks.style.display='block';
+  });
+</script>
+</body>
+</html>
