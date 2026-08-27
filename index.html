@@ -10,122 +10,128 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --ink:#15110A; --ink-2:#1E1810; --ink-3:#0A0806;
-    --parch:#ECE3D0; --parch-dim:#B7A987; --parch-faint:#7C7157;
+    --ink:#15110A; --ink-2:#1E1810; --ink-3:#0B0906;
+    --parch:#EEE6D3; --parch-dim:#C0B392; --parch-faint:#847754;
     --gold-hi:#F6DE9E; --gold:#D8B461; --gold-mid:#C29A45; --gold-deep:#9A7628;
-    --line:rgba(216,180,97,.22); --line-soft:rgba(216,180,97,.12);
-    --maxw:1100px;
+    --line:rgba(216,180,97,.24); --line-soft:rgba(216,180,97,.13);
+    --maxw:1120px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{background:var(--ink);color:var(--parch);font-family:"Spectral",Georgia,serif;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   .mr{font-family:"Tiro Devanagari Marathi",serif;}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px;}
   a{color:inherit;}
-  .kicker{font-family:"Cinzel",serif;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-  .kicker .mr{letter-spacing:.04em;font-size:.85rem;color:var(--gold-hi);}
+  .kicker{font-family:"Cinzel",serif;font-size:.8rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .kicker .mr{letter-spacing:.05em;font-size:.95rem;color:var(--gold-hi);}
 
-  /* ---------------- HERO ---------------- */
-  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:88px 28px 220px;overflow:hidden;}
-  .glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:min(880px,120vw);height:min(880px,120vw);
-    background:radial-gradient(circle,rgba(216,180,97,.20),rgba(216,180,97,.07) 34%,transparent 62%);pointer-events:none;z-index:0;}
-  /* faint Maharashtra outline watermark */
-  .map-wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-48%);width:min(760px,116vw);z-index:0;opacity:.07;pointer-events:none;}
-  .map-wm path{fill:none;stroke:var(--gold-hi);stroke-width:2.4;}
+  /* ---------- traditional background ---------- */
+  .bg-jaali{position:fixed;inset:0;z-index:0;opacity:.055;pointer-events:none;}
+  .corner{position:fixed;width:120px;height:120px;z-index:0;opacity:.4;pointer-events:none;color:var(--gold);}
+  .corner.tl{top:16px;left:16px;}
+  .corner.tr{top:16px;right:16px;transform:scaleX(-1);}
+  .corner.bl{bottom:16px;left:16px;transform:scaleY(-1);}
+  .corner.br{bottom:16px;right:16px;transform:scale(-1,-1);}
+  .flourish{display:block;margin:0 auto;width:230px;height:auto;color:var(--gold-mid);}
 
-  .hero-inner{position:relative;z-index:2;max-width:860px;}
-  .hero .kicker{display:block;margin-bottom:30px;animation:rise .9s ease both .1s;}
-  .logo-top{position:relative;width:clamp(230px,34vw,340px);margin:0 auto;display:block;
-    filter:drop-shadow(0 6px 26px rgba(216,180,97,.28));animation:rise 1s ease both .2s;}
-  .logo-shine{position:absolute;inset:0;pointer-events:none;
-    -webkit-mask:url('logo-top.png') center/contain no-repeat;mask:url('logo-top.png') center/contain no-repeat;
-    background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.7) 50%,transparent 60%);
-    background-size:260% 100%;background-position:180% 0;animation:sweep 1.5s ease-out 1s both;}
-  .rule{width:60px;height:1px;margin:34px auto 26px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:rise 1s ease both .35s;}
-  .headline{font-weight:400;font-size:clamp(1.32rem,3.2vw,2.05rem);line-height:1.34;max-width:22ch;margin:0 auto;animation:rise 1s ease both .4s;}
+  /* ---------- HERO ---------- */
+  .hero{position:relative;z-index:1;background:transparent;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:96px 30px 130px;}
+  .glow{position:absolute;top:34%;left:50%;transform:translate(-50%,-50%);width:min(900px,120vw);height:min(900px,120vw);background:radial-gradient(circle,rgba(216,180,97,.18),rgba(216,180,97,.06) 34%,transparent 62%);pointer-events:none;z-index:0;}
+  .hero-inner{position:relative;z-index:2;max-width:1000px;width:100%;}
+  .hero .kicker{display:block;margin-bottom:26px;animation:rise .9s ease both .1s;}
+  .logo-wrap{position:relative;display:inline-block;animation:rise 1s ease both .2s;}
+  .logo-top{width:clamp(260px,40vw,430px);height:auto;display:block;filter:drop-shadow(0 8px 30px rgba(216,180,97,.28));}
+  .logo-shine{position:absolute;inset:0;pointer-events:none;-webkit-mask:url('logo-top.png') center/contain no-repeat;mask:url('logo-top.png') center/contain no-repeat;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.7) 50%,transparent 60%);background-size:260% 100%;background-position:180% 0;animation:sweep 1.6s ease-out 1s both;}
+  .hero .flourish{margin:26px auto 30px;animation:rise 1s ease both .32s;}
+
+  .bilingual{display:grid;grid-template-columns:1fr 1fr;max-width:940px;margin:0 auto;animation:rise 1s ease both .42s;}
+  .col-en{text-align:right;padding:0 40px 0 0;border-right:1px solid var(--line);}
+  .col-mr{text-align:left;padding:0 0 0 40px;}
+  .headline{font-weight:400;font-size:clamp(1.45rem,2.7vw,2.15rem);line-height:1.32;}
   .headline em{font-style:italic;color:var(--gold-hi);}
-  .headline-mr{font-size:clamp(1.05rem,2.5vw,1.42rem);color:var(--gold);margin:14px auto 0;max-width:30ch;line-height:1.5;animation:rise 1s ease both .48s;}
-  .subline{margin:24px auto 0;max-width:58ch;font-size:1rem;color:var(--parch-dim);font-weight:300;animation:rise 1s ease both .54s;}
-  .subline-mr{margin:8px auto 0;max-width:52ch;font-size:.98rem;color:var(--parch-faint);animation:rise 1s ease both .58s;}
+  .headline.mr{color:var(--gold);font-weight:400;}
+  .subline{margin-top:20px;font-size:clamp(1.02rem,1.35vw,1.16rem);color:var(--parch-dim);font-weight:300;}
+  .subline.mr{color:var(--parch-dim);}
 
-  .cta-row{margin-top:38px;display:flex;flex-direction:column;align-items:center;gap:16px;animation:rise 1s ease both .64s;}
-  .btn{display:inline-block;cursor:pointer;border:none;font-family:"Cinzel",serif;font-weight:600;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:#241a08;
-    background:linear-gradient(180deg,var(--gold-hi),var(--gold-mid));padding:16px 42px;border-radius:2px;text-decoration:none;
-    box-shadow:0 6px 26px rgba(216,180,97,.28),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .25s,box-shadow .25s;}
+  .cta-row{margin-top:46px;display:flex;flex-direction:column;align-items:center;gap:18px;animation:rise 1s ease both .56s;}
+  .btn{display:inline-block;cursor:pointer;border:none;font-family:"Cinzel",serif;font-weight:600;font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;color:#241a08;background:linear-gradient(180deg,var(--gold-hi),var(--gold-mid));padding:17px 46px;border-radius:2px;text-decoration:none;box-shadow:0 6px 26px rgba(216,180,97,.28),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .25s,box-shadow .25s;}
   .btn:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(216,180,97,.42),inset 0 1px 0 rgba(255,255,255,.4);}
   .btn:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;}
-  .opening{font-size:.88rem;color:var(--parch-faint);}
+  .opening{font-size:.96rem;color:var(--parch-faint);}
   .opening b{color:var(--gold);font-weight:500;}
-  .count{display:flex;gap:22px;margin-top:6px;}
-  .count .u{text-align:center;min-width:50px;}
-  .count .n{font-family:"Cinzel",serif;font-weight:600;font-size:1.6rem;color:var(--gold-hi);line-height:1;}
-  .count .l{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--parch-faint);margin-top:7px;}
-  .scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--parch-faint);animation:pulse 2.4s ease-in-out infinite;}
+  .count{display:flex;gap:26px;margin-top:4px;}
+  .count .u{text-align:center;min-width:58px;}
+  .count .n{font-family:"Cinzel",serif;font-weight:600;font-size:2rem;color:var(--gold-hi);line-height:1;}
+  .count .l{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--parch-faint);margin-top:8px;}
+  .scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--parch-faint);animation:pulse 2.4s ease-in-out infinite;}
 
-  /* fort skyline horizon */
-  .skyline{position:absolute;left:0;right:0;bottom:-1px;z-index:1;width:100%;height:auto;display:block;pointer-events:none;}
+  /* ---------- PURSUITS ---------- */
+  .pursuits{position:relative;z-index:1;background:transparent;padding:40px 0 80px;}
+  .sec-head{text-align:center;margin-bottom:40px;}
+  .sec-head .kicker{display:block;margin-bottom:14px;}
+  .sec-head h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.55rem,3.4vw,2.35rem);color:var(--parch);}
+  .sec-head .h2mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);font-size:clamp(1.15rem,2.5vw,1.55rem);margin-top:8px;}
+  .sec-head .flourish{margin-top:18px;}
 
-  /* ---------------- PURSUITS ---------------- */
-  .pursuits{position:relative;z-index:2;background:var(--ink);padding:26px 0 70px;}
-  .sec-head{text-align:center;margin-bottom:44px;}
-  .sec-head .kicker{display:block;margin-bottom:12px;}
-  .sec-head h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.4rem,3.4vw,2.15rem);color:var(--parch);}
-  .sec-head .h2mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);font-size:clamp(1.05rem,2.4vw,1.4rem);margin-top:8px;}
+  .plist{max-width:960px;margin:0 auto;}
+  .colhead{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:8px;}
+  .colhead .e{text-align:right;padding-right:44px;font-family:"Cinzel",serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--parch-faint);}
+  .colhead .m{text-align:left;padding-left:44px;font-family:"Tiro Devanagari Marathi",serif;font-size:.9rem;letter-spacing:.05em;color:var(--parch-faint);}
 
-  .plist{max-width:940px;margin:0 auto;}
-  .phead{display:grid;grid-template-columns:34px 1fr 1fr;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px;}
-  .phead span{font-family:"Cinzel",serif;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--parch-faint);}
-  .phead .l-en{grid-column:2;padding-left:6px;}
-  .phead .l-mr{grid-column:3;padding-left:28px;font-family:"Tiro Devanagari Marathi",serif;letter-spacing:.06em;}
-
-  .pitem{display:grid;grid-template-columns:34px 1fr 1fr;gap:0;padding:22px 0;border-bottom:1px solid var(--line-soft);
-    opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+  .pitem{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:24px 0;border-bottom:1px solid var(--line-soft);opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
   .pitem.in{opacity:1;transform:none;}
-  .pnum{font-family:"Cinzel",serif;font-size:.78rem;color:var(--gold-deep);padding-top:3px;}
-  .pen{padding:0 28px 0 6px;border-right:1px solid var(--line-soft);}
-  .pmr{padding:0 6px 0 28px;}
-  .pen h3{font-weight:500;font-size:1.16rem;color:var(--gold-hi);margin-bottom:5px;}
-  .pen p{color:var(--parch-dim);font-weight:300;font-size:.98rem;}
-  .pmr h3{font-family:"Tiro Devanagari Marathi",serif;font-size:1.12rem;color:var(--gold-hi);margin-bottom:5px;font-weight:400;}
-  .pmr p{font-family:"Tiro Devanagari Marathi",serif;color:var(--parch-dim);font-size:.96rem;line-height:1.7;}
+  .pitem::before{content:"";position:absolute;left:50%;top:16px;bottom:16px;width:1px;background:var(--line-soft);}
+  .pnum{position:absolute;left:50%;top:20px;transform:translateX(-50%);background:var(--ink);padding:1px 9px;font-family:"Cinzel",serif;font-size:.72rem;color:var(--gold-deep);z-index:1;}
+  .pen{text-align:right;padding:0 44px 0 6px;}
+  .pmr{text-align:left;padding:0 6px 0 44px;}
+  .pen h3{font-weight:500;font-size:clamp(1.14rem,1.7vw,1.4rem);color:var(--gold-hi);margin-bottom:6px;}
+  .pen p{color:var(--parch-dim);font-weight:300;font-size:clamp(1rem,1.3vw,1.1rem);}
+  .pmr h3{font-family:"Tiro Devanagari Marathi",serif;font-weight:400;font-size:clamp(1.12rem,1.7vw,1.36rem);color:var(--gold-hi);margin-bottom:6px;}
+  .pmr p{font-family:"Tiro Devanagari Marathi",serif;color:var(--parch-dim);font-size:clamp(1rem,1.3vw,1.08rem);line-height:1.75;}
 
-  /* ---------------- JOIN ---------------- */
-  .join{position:relative;text-align:center;padding:84px 28px 90px;background:radial-gradient(circle at 50% 0%,rgba(216,180,97,.10),transparent 58%),var(--ink-2);border-top:1px solid var(--line);}
-  .join .kicker{display:block;margin-bottom:16px;}
-  .join h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.4rem,3.6vw,2.1rem);color:var(--parch);max-width:24ch;margin:0 auto 6px;line-height:1.3;}
-  .join .h2mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);font-size:clamp(1.02rem,2.4vw,1.34rem);margin-bottom:22px;}
-  .join p.lead{max-width:54ch;margin:0 auto 6px;color:var(--parch-dim);font-weight:300;}
-  .join p.lead-mr{max-width:50ch;margin:0 auto 32px;color:var(--parch-faint);font-family:"Tiro Devanagari Marathi",serif;font-size:.96rem;}
-  form.signup{display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
-  form.signup input{flex:1 1 240px;min-width:0;background:rgba(0,0,0,.28);border:1px solid var(--line);color:var(--parch);font-family:"Spectral",serif;font-size:1rem;padding:15px 18px;border-radius:2px;}
+  /* ---------- JOIN ---------- */
+  .join{position:relative;z-index:1;text-align:center;padding:90px 30px 96px;background:radial-gradient(circle at 50% 0%,rgba(216,180,97,.10),transparent 56%),rgba(30,24,16,.55);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .join .kicker{display:block;margin-bottom:26px;}
+  .join .bilingual{max-width:900px;margin:0 auto 34px;}
+  .join h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.4rem,2.6vw,2rem);color:var(--parch);line-height:1.3;margin-bottom:16px;}
+  .join h2.mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);}
+  .join .lead{font-size:clamp(1.02rem,1.4vw,1.16rem);color:var(--parch-dim);font-weight:300;}
+  .join .lead.mr{color:var(--parch-dim);}
+  form.signup{display:flex;gap:10px;max-width:520px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+  form.signup input{flex:1 1 250px;min-width:0;background:rgba(0,0,0,.3);border:1px solid var(--line);color:var(--parch);font-family:"Spectral",serif;font-size:1.05rem;padding:16px 20px;border-radius:2px;}
   form.signup input::placeholder{color:var(--parch-faint);}
   form.signup input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,180,97,.14);}
-  form.signup .btn{flex:0 0 auto;padding:15px 30px;}
-  .thanks{display:none;max-width:480px;margin:0 auto;font-size:1.04rem;color:var(--gold-hi);padding:18px 20px;border:1px solid var(--line);border-radius:2px;background:rgba(0,0,0,.2);}
-  .thanks .mr{display:block;color:var(--parch-dim);font-size:.92rem;margin-top:4px;}
-  .comeback{margin-top:26px;font-size:.9rem;color:var(--parch-faint);}
+  form.signup .btn{flex:0 0 auto;padding:16px 32px;}
+  .thanks{display:none;max-width:520px;margin:0 auto;font-size:1.1rem;color:var(--gold-hi);padding:20px 22px;border:1px solid var(--line);border-radius:2px;background:rgba(0,0,0,.24);}
+  .thanks .mr{display:block;color:var(--parch-dim);font-size:.98rem;margin-top:5px;}
+  .comeback{margin-top:28px;font-size:1rem;color:var(--parch-faint);}
   .comeback b{color:var(--gold);font-weight:500;}
-  .comeback .mr{display:block;margin-top:4px;}
+  .comeback .mr{display:block;margin-top:5px;}
 
-  /* ---------------- FOOTER ---------------- */
-  footer{position:relative;text-align:center;padding:60px 28px 56px;background:var(--ink-3);border-top:1px solid var(--line-soft);overflow:hidden;}
-  .medallion{width:clamp(150px,24vw,210px);height:auto;display:block;margin:0 auto 22px;position:relative;z-index:2;}
-  footer .site{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.82rem;color:var(--gold);position:relative;z-index:2;}
-  footer .jai{display:block;margin-top:16px;color:var(--gold-hi);font-size:1.24rem;position:relative;z-index:2;}
-  footer .made{display:block;margin-top:8px;font-size:.7rem;color:var(--parch-faint);letter-spacing:.06em;position:relative;z-index:2;}
-  footer .made .mr{color:var(--parch-faint);}
+  /* ---------- FOOTER ---------- */
+  footer{position:relative;z-index:1;text-align:center;padding:66px 30px 60px;background:rgba(11,9,6,.9);}
+  .glow.foot{top:auto;bottom:-34%;opacity:.5;}
+  .coin{width:clamp(200px,32vw,300px);height:auto;display:block;margin:0 auto 24px;position:relative;z-index:2;filter:drop-shadow(0 10px 34px rgba(0,0,0,.5));}
+  footer .site{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.9rem;color:var(--gold);position:relative;z-index:2;}
+  footer .jai{display:block;margin-top:18px;color:var(--gold-hi);font-size:1.4rem;position:relative;z-index:2;}
+  footer .made{display:block;margin-top:10px;font-size:.76rem;color:var(--parch-faint);letter-spacing:.06em;position:relative;z-index:2;}
 
-  /* ---------------- motion ---------------- */
+  /* ---------- motion ---------- */
   @keyframes rise{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
   @keyframes sweep{from{background-position:180% 0;}to{background-position:-90% 0;}}
   @keyframes pulse{0%,100%{opacity:.4;}50%{opacity:.9;}}
 
-  @media (max-width:720px){
-    .phead{display:none;}
-    .pitem{grid-template-columns:1fr;gap:2px;padding:20px 0;}
-    .pnum{color:var(--gold);font-size:.72rem;letter-spacing:.12em;}
-    .pen{padding:8px 0 0;border-right:none;}
-    .pmr{padding:12px 0 0;border-top:1px solid var(--line-soft);margin-top:10px;}
+  @media (max-width:760px){
+    .corner{display:none;}
+    .bilingual{grid-template-columns:1fr;}
+    .col-en{text-align:center;padding:0 0 26px;border-right:none;border-bottom:1px solid var(--line-soft);}
+    .col-mr{text-align:center;padding:26px 0 0;}
+    .colhead{display:none;}
+    .pitem{grid-template-columns:1fr;padding:22px 0;}
+    .pitem::before{display:none;}
+    .pnum{position:static;transform:none;display:inline-block;background:transparent;padding:0;color:var(--gold);letter-spacing:.14em;margin-bottom:8px;}
+    .pen{text-align:left;padding:0;}
+    .pmr{text-align:left;padding:14px 0 0;border-top:1px solid var(--line-soft);margin-top:12px;}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
@@ -137,36 +143,69 @@
 </head>
 <body>
 
+<!-- traditional jaali lattice background -->
+<svg class="bg-jaali" aria-hidden="true"><defs>
+  <pattern id="jaali" width="64" height="64" patternUnits="userSpaceOnUse">
+    <g fill="none" stroke="#D8B461" stroke-width="1">
+      <circle cx="0" cy="0" r="32"/><circle cx="64" cy="0" r="32"/>
+      <circle cx="0" cy="64" r="32"/><circle cx="64" cy="64" r="32"/>
+      <circle cx="32" cy="32" r="32"/>
+    </g>
+  </pattern></defs>
+  <rect width="100%" height="100%" fill="url(#jaali)"/>
+</svg>
+
+<!-- corner flourishes -->
+<svg class="corner tl" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+  <path d="M8,8 L64,8 M8,8 L8,64"/>
+  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
+  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
+</svg>
+<svg class="corner tr" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+  <path d="M8,8 L64,8 M8,8 L8,64"/>
+  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
+  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
+</svg>
+<svg class="corner bl" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+  <path d="M8,8 L64,8 M8,8 L8,64"/>
+  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
+  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
+</svg>
+<svg class="corner br" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+  <path d="M8,8 L64,8 M8,8 L8,64"/>
+  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
+  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
+</svg>
+
 <!-- ================= HERO ================= -->
 <header class="hero">
   <div class="glow"></div>
-
-  <!-- faint Maharashtra outline (stylized watermark) -->
-  <svg class="map-wm" viewBox="0 0 500 400" aria-hidden="true">
-    <path d="M150,72 C132,88 140,112 132,132 C124,156 112,166 110,196
-             C108,224 126,244 110,268 L142,280 C172,270 200,290 236,278
-             C270,266 300,294 338,284 C360,278 372,294 388,288 L412,326
-             L392,332 C402,302 404,272 418,250 C432,224 408,206 422,180
-             C432,156 402,150 404,120 C406,98 380,110 360,96
-             C330,84 300,106 268,92 C236,78 208,104 182,86
-             C170,78 160,72 150,72 Z"/>
-  </svg>
-
   <div class="hero-inner">
     <span class="kicker">Something is being built <span class="mr">· महाराष्ट्रासाठी</span></span>
 
-    <div style="position:relative;display:inline-block;">
+    <div class="logo-wrap">
       <img class="logo-top" src="logo-top.png" alt="Mahashivaji" />
       <span class="logo-shine" aria-hidden="true"></span>
     </div>
 
-    <div class="rule"></div>
+    <svg class="flourish" viewBox="0 0 240 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+      <line x1="6" y1="12" x2="92" y2="12"/><line x1="148" y1="12" x2="234" y2="12"/>
+      <path d="M92,12 c-7,-9 -20,-9 -22,0 c-2,7 8,9 10,2"/>
+      <path d="M148,12 c7,-9 20,-9 22,0 c2,7 -8,9 -10,2"/>
+      <path d="M120,4 l9,8 l-9,8 l-9,-8 z" fill="currentColor" stroke="none" opacity=".9"/>
+      <circle cx="6" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="234" cy="12" r="2" fill="currentColor" stroke="none"/>
+    </svg>
 
-    <h1 class="headline">His forts still stand. His way of thinking still leads. Let's carry it into a <em>new Maharashtra</em>.</h1>
-    <p class="headline-mr mr">त्यांचे गड आजही उभे आहेत. त्यांचा विचार आजही मार्ग दाखवतो. चला, तो नव्या महाराष्ट्रात पुढे नेऊया.</p>
-
-    <p class="subline">A platform and a community taking shape — to explore the forts anew, spread his life and teachings, protect our culture, and help the people of Maharashtra rise together.</p>
-    <p class="subline-mr mr">एक व्यासपीठ आणि एक समुदाय आकार घेत आहे — गड नव्याने अनुभवण्यासाठी, त्यांचे जीवन आणि विचार पसरवण्यासाठी, आपली संस्कृती जपण्यासाठी, आणि महाराष्ट्रातील माणसांना एकत्र पुढे नेण्यासाठी.</p>
+    <div class="bilingual">
+      <div class="col-en">
+        <h1 class="headline">His forts still stand. His way of thinking still leads. Let's carry it into a <em>new Maharashtra</em>.</h1>
+        <p class="subline">A platform and a community taking shape — to explore the forts anew, spread his life and teachings, protect our culture, and help the people of Maharashtra rise together.</p>
+      </div>
+      <div class="col-mr">
+        <p class="headline mr">त्यांचे गड आजही उभे आहेत. त्यांचा विचार आजही मार्ग दाखवतो. चला, तो नव्या महाराष्ट्रात पुढे नेऊया.</p>
+        <p class="subline mr">एक व्यासपीठ आणि एक समुदाय आकार घेत आहे — गड नव्याने अनुभवण्यासाठी, त्यांचे जीवन आणि विचार पसरवण्यासाठी, आपली संस्कृती जपण्यासाठी, आणि महाराष्ट्रातील माणसांना एकत्र पुढे नेण्यासाठी.</p>
+      </div>
+    </div>
 
     <div class="cta-row">
       <a href="#join" class="btn">Join us</a>
@@ -178,39 +217,7 @@
       <p class="opening">We open in <b>one week</b>.</p>
     </div>
   </div>
-
   <div class="scrollcue">Scroll</div>
-
-  <!-- fort skyline: hill fort, bastion, gateway, sea fort, flags -->
-  <svg class="skyline" viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true">
-    <path fill="#1E1810" d="M0,190 L0,150
-      L70,150 L86,150 C86,128 104,120 128,120 L128,150 L150,150 L150,120 L168,120 L168,150 L188,150
-      L188,104 L206,104 L206,86 L224,86 L224,104 L242,104 L242,150 L300,150
-      L300,150 C300,120 330,110 360,110 C390,110 420,120 420,150 L480,150
-      L480,110 L500,110 L500,150 L560,150
-      L560,96 L582,96 L582,150 L604,150 L604,72 C604,56 640,56 640,72 L640,150 L678,150 L678,96 L700,96 L700,150 L760,150
-      L760,124 L1040,124 L1040,150 L1080,150
-      L1080,150 C1080,116 1120,104 1150,104 C1180,104 1210,116 1210,150 L1250,150
-      L1250,150 C1250,120 1280,112 1300,112 L1300,90 L1318,90 L1318,72 L1336,72 L1336,90 L1354,90 L1354,150 L1440,150 L1440,190 Z"/>
-    <!-- gold top edge -->
-    <path fill="none" stroke="#D8B461" stroke-width="1.4" opacity=".5" d="M0,150
-      L86,150 C86,128 104,120 128,120 L128,150 M150,150 L150,120 L168,120 L168,150
-      M188,150 L188,104 L206,104 L206,86 L224,86 L224,104 L242,104 L242,150
-      M300,150 C300,120 330,110 360,110 C390,110 420,120 420,150
-      M480,150 L480,110 L500,110 L500,150
-      M560,150 L560,96 L582,96 L582,150 M604,150 L604,72 C604,56 640,56 640,72 L640,150 M678,150 L678,96 L700,96 L700,150
-      M760,150 L760,124 L1040,124 L1040,150
-      M1080,150 C1080,116 1120,104 1150,104 C1180,104 1210,116 1210,150
-      M1250,150 C1250,120 1280,112 1300,112 L1300,90 L1318,90 L1318,72 L1336,72 L1336,90 L1354,90 L1354,150"/>
-    <!-- sea-fort water line -->
-    <path fill="none" stroke="#D8B461" stroke-width="1" opacity=".3" d="M760,138 q14,-7 28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0 t28,0"/>
-    <!-- flags -->
-    <g stroke="#D8B461" stroke-width="1.4" opacity=".7" fill="#D8B461">
-      <line x1="215" y1="86" x2="215" y2="64"/><path d="M215,66 L236,71 L215,76 Z"/>
-      <line x1="622" y1="56" x2="622" y2="34"/><path d="M622,36 L644,41 L622,46 Z"/>
-      <line x1="1327" y1="72" x2="1327" y2="50"/><path d="M1327,52 L1348,57 L1327,62 Z"/>
-    </g>
-  </svg>
 </header>
 
 <!-- ================= PURSUITS ================= -->
@@ -220,10 +227,16 @@
       <span class="kicker">What we're setting out to do</span>
       <h2>Six ways to carry it forward</h2>
       <div class="h2mr mr">तो वारसा पुढे नेण्याचे सहा मार्ग</div>
+      <svg class="flourish" viewBox="0 0 240 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <line x1="6" y1="12" x2="92" y2="12"/><line x1="148" y1="12" x2="234" y2="12"/>
+        <path d="M92,12 c-7,-9 -20,-9 -22,0 c-2,7 8,9 10,2"/>
+        <path d="M148,12 c7,-9 20,-9 22,0 c2,7 -8,9 -10,2"/>
+        <path d="M120,4 l9,8 l-9,8 l-9,-8 z" fill="currentColor" stroke="none" opacity=".9"/>
+      </svg>
     </div>
 
     <div class="plist" id="plist">
-      <div class="phead"><span class="l-en">In English</span><span class="l-mr mr">मराठीत</span></div>
+      <div class="colhead"><div class="e">In English</div><div class="m mr">मराठीत</div></div>
 
       <div class="pitem">
         <div class="pnum">I</div>
@@ -268,10 +281,17 @@
 <section class="join" id="join">
   <div class="wrap">
     <span class="kicker">Be part of it <span class="mr">· यात सहभागी व्हा</span></span>
-    <h2>This is only the beginning — and it belongs to all of us.</h2>
-    <div class="h2mr mr">ही तर केवळ सुरुवात आहे — आणि ती आपल्या सर्वांची आहे.</div>
-    <p class="lead">Students, farmers, makers, teachers, dreamers — every Maharashtrian has a place here. Leave your name, and we'll show you how to take part.</p>
-    <p class="lead-mr mr">विद्यार्थी, शेतकरी, निर्माते, शिक्षक, स्वप्न पाहणारे — प्रत्येक मराठी माणसासाठी इथे जागा आहे. तुमचे नाव नोंदवा, सहभागी कसे व्हायचे ते आम्ही सांगू.</p>
+
+    <div class="bilingual">
+      <div class="col-en">
+        <h2>This is only the beginning — and it belongs to all of us.</h2>
+        <p class="lead">Students, farmers, makers, teachers, dreamers — every Maharashtrian has a place here. Leave your name, and we'll show you how to take part.</p>
+      </div>
+      <div class="col-mr">
+        <h2 class="mr">ही तर केवळ सुरुवात आहे — आणि ती आपल्या सर्वांची आहे.</h2>
+        <p class="lead mr">विद्यार्थी, शेतकरी, निर्माते, शिक्षक, स्वप्न पाहणारे — प्रत्येक मराठी माणसासाठी इथे जागा आहे. तुमचे नाव नोंदवा, सहभागी कसे व्हायचे ते आम्ही सांगू.</p>
+      </div>
+    </div>
 
     <!-- To collect emails: point the form at your Google Form / Mailchimp / Formspree endpoint,
          e.g. <form class="signup" action="https://formspree.io/f/XXXX" method="POST"> and remove the JS handler. -->
@@ -287,8 +307,8 @@
 
 <!-- ================= FOOTER ================= -->
 <footer>
-  <div class="glow" style="top:auto;bottom:-30%;opacity:.5;"></div>
-  <img class="medallion" src="medallion.png" alt="Mahashivaji seal" />
+  <div class="glow foot"></div>
+  <img class="coin" src="coin.png" alt="Mahashivaji seal" />
   <div class="site">mahashivaji.org</div>
   <span class="jai mr">जय शिवराय</span>
   <span class="made">Made in Maharashtra, for Maharashtra <span class="mr">· महाराष्ट्रासाठी</span></span>
@@ -312,8 +332,8 @@
   /* Reveal pursuits on scroll */
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   if('IntersectionObserver' in window && !reduce){
-    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.18});
-    document.querySelectorAll('.pitem').forEach(function(el,i){el.style.transitionDelay=(i*65)+'ms';io.observe(el);});
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
+    document.querySelectorAll('.pitem').forEach(function(el,i){el.style.transitionDelay=(i*60)+'ms';io.observe(el);});
   }else{document.querySelectorAll('.pitem').forEach(function(el){el.classList.add('in');});}
 
   /* Signup (client-side confirm; connect to your email service to store) */
