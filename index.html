@@ -1,350 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mahashivaji — Something is being built</title>
-<meta name="description" content="A platform and community taking shape for Maharashtra — exploring the forts anew, carrying Shivaji Maharaj's life and teachings forward, and helping its people rise together. We open in one week." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --ink:#15110A; --ink-2:#1E1810; --ink-3:#0B0906;
-    --parch:#EEE6D3; --parch-dim:#C0B392; --parch-faint:#847754;
-    --gold-hi:#F6DE9E; --gold:#D8B461; --gold-mid:#C29A45; --gold-deep:#9A7628;
-    --line:rgba(216,180,97,.24); --line-soft:rgba(216,180,97,.13);
-    --maxw:1120px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--ink);color:var(--parch);font-family:"Spectral",Georgia,serif;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-  .mr{font-family:"Tiro Devanagari Marathi",serif;}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px;}
-  a{color:inherit;}
-  .kicker{font-family:"Cinzel",serif;font-size:.8rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-  .kicker .mr{letter-spacing:.05em;font-size:.95rem;color:var(--gold-hi);}
-
-  /* ---------- traditional background ---------- */
-  .bg-jaali{position:fixed;inset:0;z-index:0;opacity:.055;pointer-events:none;}
-  .corner{position:fixed;width:120px;height:120px;z-index:0;opacity:.4;pointer-events:none;color:var(--gold);}
-  .corner.tl{top:16px;left:16px;}
-  .corner.tr{top:16px;right:16px;transform:scaleX(-1);}
-  .corner.bl{bottom:16px;left:16px;transform:scaleY(-1);}
-  .corner.br{bottom:16px;right:16px;transform:scale(-1,-1);}
-  .flourish{display:block;margin:0 auto;width:230px;height:auto;color:var(--gold-mid);}
-
-  /* ---------- HERO ---------- */
-  .hero{position:relative;z-index:1;background:transparent;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:96px 30px 130px;}
-  .glow{position:absolute;top:34%;left:50%;transform:translate(-50%,-50%);width:min(900px,120vw);height:min(900px,120vw);background:radial-gradient(circle,rgba(216,180,97,.18),rgba(216,180,97,.06) 34%,transparent 62%);pointer-events:none;z-index:0;}
-  .hero-inner{position:relative;z-index:2;max-width:1000px;width:100%;}
-  .hero .kicker{display:block;margin-bottom:26px;animation:rise .9s ease both .1s;}
-  .logo-wrap{position:relative;display:inline-block;animation:rise 1s ease both .2s;}
-  .logo-top{width:clamp(260px,40vw,430px);height:auto;display:block;filter:drop-shadow(0 8px 30px rgba(216,180,97,.28));}
-  .logo-shine{position:absolute;inset:0;pointer-events:none;-webkit-mask:url('logo-top.png') center/contain no-repeat;mask:url('logo-top.png') center/contain no-repeat;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.7) 50%,transparent 60%);background-size:260% 100%;background-position:180% 0;animation:sweep 1.6s ease-out 1s both;}
-  .hero .flourish{margin:26px auto 30px;animation:rise 1s ease both .32s;}
-
-  .bilingual{display:grid;grid-template-columns:1fr 1fr;max-width:940px;margin:0 auto;animation:rise 1s ease both .42s;}
-  .col-en{text-align:right;padding:0 40px 0 0;border-right:1px solid var(--line);}
-  .col-mr{text-align:left;padding:0 0 0 40px;}
-  .headline{font-weight:400;font-size:clamp(1.45rem,2.7vw,2.15rem);line-height:1.32;}
-  .headline em{font-style:italic;color:var(--gold-hi);}
-  .headline.mr{color:var(--gold);font-weight:400;}
-  .subline{margin-top:20px;font-size:clamp(1.02rem,1.35vw,1.16rem);color:var(--parch-dim);font-weight:300;}
-  .subline.mr{color:var(--parch-dim);}
-
-  .cta-row{margin-top:46px;display:flex;flex-direction:column;align-items:center;gap:18px;animation:rise 1s ease both .56s;}
-  .btn{display:inline-block;cursor:pointer;border:none;font-family:"Cinzel",serif;font-weight:600;font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;color:#241a08;background:linear-gradient(180deg,var(--gold-hi),var(--gold-mid));padding:17px 46px;border-radius:2px;text-decoration:none;box-shadow:0 6px 26px rgba(216,180,97,.28),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .25s,box-shadow .25s;}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(216,180,97,.42),inset 0 1px 0 rgba(255,255,255,.4);}
-  .btn:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;}
-  .opening{font-size:.96rem;color:var(--parch-faint);}
-  .opening b{color:var(--gold);font-weight:500;}
-  .count{display:flex;gap:26px;margin-top:4px;}
-  .count .u{text-align:center;min-width:58px;}
-  .count .n{font-family:"Cinzel",serif;font-weight:600;font-size:2rem;color:var(--gold-hi);line-height:1;}
-  .count .l{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--parch-faint);margin-top:8px;}
-  .scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--parch-faint);animation:pulse 2.4s ease-in-out infinite;}
-
-  /* ---------- PURSUITS ---------- */
-  .pursuits{position:relative;z-index:1;background:transparent;padding:40px 0 80px;}
-  .sec-head{text-align:center;margin-bottom:40px;}
-  .sec-head .kicker{display:block;margin-bottom:14px;}
-  .sec-head h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.55rem,3.4vw,2.35rem);color:var(--parch);}
-  .sec-head .h2mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);font-size:clamp(1.15rem,2.5vw,1.55rem);margin-top:8px;}
-  .sec-head .flourish{margin-top:18px;}
-
-  .plist{max-width:960px;margin:0 auto;}
-  .colhead{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:8px;}
-  .colhead .e{text-align:right;padding-right:44px;font-family:"Cinzel",serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--parch-faint);}
-  .colhead .m{text-align:left;padding-left:44px;font-family:"Tiro Devanagari Marathi",serif;font-size:.9rem;letter-spacing:.05em;color:var(--parch-faint);}
-
-  .pitem{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:24px 0;border-bottom:1px solid var(--line-soft);opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
-  .pitem.in{opacity:1;transform:none;}
-  .pitem::before{content:"";position:absolute;left:50%;top:16px;bottom:16px;width:1px;background:var(--line-soft);}
-  .pnum{position:absolute;left:50%;top:20px;transform:translateX(-50%);background:var(--ink);padding:1px 9px;font-family:"Cinzel",serif;font-size:.72rem;color:var(--gold-deep);z-index:1;}
-  .pen{text-align:right;padding:0 44px 0 6px;}
-  .pmr{text-align:left;padding:0 6px 0 44px;}
-  .pen h3{font-weight:500;font-size:clamp(1.14rem,1.7vw,1.4rem);color:var(--gold-hi);margin-bottom:6px;}
-  .pen p{color:var(--parch-dim);font-weight:300;font-size:clamp(1rem,1.3vw,1.1rem);}
-  .pmr h3{font-family:"Tiro Devanagari Marathi",serif;font-weight:400;font-size:clamp(1.12rem,1.7vw,1.36rem);color:var(--gold-hi);margin-bottom:6px;}
-  .pmr p{font-family:"Tiro Devanagari Marathi",serif;color:var(--parch-dim);font-size:clamp(1rem,1.3vw,1.08rem);line-height:1.75;}
-
-  /* ---------- JOIN ---------- */
-  .join{position:relative;z-index:1;text-align:center;padding:90px 30px 96px;background:radial-gradient(circle at 50% 0%,rgba(216,180,97,.10),transparent 56%),rgba(30,24,16,.55);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .join .kicker{display:block;margin-bottom:26px;}
-  .join .bilingual{max-width:900px;margin:0 auto 34px;}
-  .join h2{font-family:"Cinzel",serif;font-weight:400;font-size:clamp(1.4rem,2.6vw,2rem);color:var(--parch);line-height:1.3;margin-bottom:16px;}
-  .join h2.mr{font-family:"Tiro Devanagari Marathi",serif;color:var(--gold);}
-  .join .lead{font-size:clamp(1.02rem,1.4vw,1.16rem);color:var(--parch-dim);font-weight:300;}
-  .join .lead.mr{color:var(--parch-dim);}
-  form.signup{display:flex;gap:10px;max-width:520px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
-  form.signup input{flex:1 1 250px;min-width:0;background:rgba(0,0,0,.3);border:1px solid var(--line);color:var(--parch);font-family:"Spectral",serif;font-size:1.05rem;padding:16px 20px;border-radius:2px;}
-  form.signup input::placeholder{color:var(--parch-faint);}
-  form.signup input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,180,97,.14);}
-  form.signup .btn{flex:0 0 auto;padding:16px 32px;}
-  .thanks{display:none;max-width:520px;margin:0 auto;font-size:1.1rem;color:var(--gold-hi);padding:20px 22px;border:1px solid var(--line);border-radius:2px;background:rgba(0,0,0,.24);}
-  .thanks .mr{display:block;color:var(--parch-dim);font-size:.98rem;margin-top:5px;}
-  .comeback{margin-top:28px;font-size:1rem;color:var(--parch-faint);}
-  .comeback b{color:var(--gold);font-weight:500;}
-  .comeback .mr{display:block;margin-top:5px;}
-
-  /* ---------- FOOTER ---------- */
-  footer{position:relative;z-index:1;text-align:center;padding:66px 30px 60px;background:rgba(11,9,6,.9);}
-  .glow.foot{top:auto;bottom:-34%;opacity:.5;}
-  .coin{width:clamp(200px,32vw,300px);height:auto;display:block;margin:0 auto 24px;position:relative;z-index:2;filter:drop-shadow(0 10px 34px rgba(0,0,0,.5));}
-  footer .site{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.9rem;color:var(--gold);position:relative;z-index:2;}
-  footer .jai{display:block;margin-top:18px;color:var(--gold-hi);font-size:1.4rem;position:relative;z-index:2;}
-  footer .made{display:block;margin-top:10px;font-size:.76rem;color:var(--parch-faint);letter-spacing:.06em;position:relative;z-index:2;}
-
-  /* ---------- motion ---------- */
-  @keyframes rise{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
-  @keyframes sweep{from{background-position:180% 0;}to{background-position:-90% 0;}}
-  @keyframes pulse{0%,100%{opacity:.4;}50%{opacity:.9;}}
-
-  @media (max-width:760px){
-    .corner{display:none;}
-    .bilingual{grid-template-columns:1fr;}
-    .col-en{text-align:center;padding:0 0 26px;border-right:none;border-bottom:1px solid var(--line-soft);}
-    .col-mr{text-align:center;padding:26px 0 0;}
-    .colhead{display:none;}
-    .pitem{grid-template-columns:1fr;padding:22px 0;}
-    .pitem::before{display:none;}
-    .pnum{position:static;transform:none;display:inline-block;background:transparent;padding:0;color:var(--gold);letter-spacing:.14em;margin-bottom:8px;}
-    .pen{text-align:left;padding:0;}
-    .pmr{text-align:left;padding:14px 0 0;border-top:1px solid var(--line-soft);margin-top:12px;}
-  }
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto;}
-    *{animation:none!important;transition:none!important;}
-    .pitem{opacity:1;transform:none;}
-    .logo-shine{display:none;}
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>MahaShivaji Foundation · Open plans for building Maharashtra</title>
+<meta name="description" content="A free, independent, non-partisan movement of Maharashtrians who connect, create, develop, contribute, improve and progress. Based in Fursungi, Pune.">
+<meta property="og:title" content="MahaShivaji Foundation · Open plans for building Maharashtra">
+<meta property="og:description" content="A free, independent, non-partisan movement of Maharashtrians who connect, create, develop, contribute, improve and progress. Based in Fursungi, Pune.">
+<meta property="og:image" content="https://mahashivaji.org/assets/img/medallion-wire.png">
+<meta property="og:site_name" content="MahaShivaji Foundation">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-
-<!-- traditional jaali lattice background -->
-<svg class="bg-jaali" aria-hidden="true"><defs>
-  <pattern id="jaali" width="64" height="64" patternUnits="userSpaceOnUse">
-    <g fill="none" stroke="#D8B461" stroke-width="1">
-      <circle cx="0" cy="0" r="32"/><circle cx="64" cy="0" r="32"/>
-      <circle cx="0" cy="64" r="32"/><circle cx="64" cy="64" r="32"/>
-      <circle cx="32" cy="32" r="32"/>
-    </g>
-  </pattern></defs>
-  <rect width="100%" height="100%" fill="url(#jaali)"/>
-</svg>
-
-<!-- corner flourishes -->
-<svg class="corner tl" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-  <path d="M8,8 L64,8 M8,8 L8,64"/>
-  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
-  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
-</svg>
-<svg class="corner tr" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-  <path d="M8,8 L64,8 M8,8 L8,64"/>
-  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
-  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
-</svg>
-<svg class="corner bl" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-  <path d="M8,8 L64,8 M8,8 L8,64"/>
-  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
-  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
-</svg>
-<svg class="corner br" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-  <path d="M8,8 L64,8 M8,8 L8,64"/>
-  <path d="M8,26 C34,26 26,52 52,52 C40,40 44,20 26,20"/>
-  <circle cx="14" cy="14" r="2.4" fill="currentColor" stroke="none"/>
-</svg>
-
-<!-- ================= HERO ================= -->
-<header class="hero">
-  <div class="glow"></div>
-  <div class="hero-inner">
-    <span class="kicker">Something is being built <span class="mr">· महाराष्ट्रासाठी</span></span>
-
-    <div class="logo-wrap">
-      <img class="logo-top" src="logo-top.png" alt="Mahashivaji" />
-      <span class="logo-shine" aria-hidden="true"></span>
-    </div>
-
-    <svg class="flourish" viewBox="0 0 240 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-      <line x1="6" y1="12" x2="92" y2="12"/><line x1="148" y1="12" x2="234" y2="12"/>
-      <path d="M92,12 c-7,-9 -20,-9 -22,0 c-2,7 8,9 10,2"/>
-      <path d="M148,12 c7,-9 20,-9 22,0 c2,7 -8,9 -10,2"/>
-      <path d="M120,4 l9,8 l-9,8 l-9,-8 z" fill="currentColor" stroke="none" opacity=".9"/>
-      <circle cx="6" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="234" cy="12" r="2" fill="currentColor" stroke="none"/>
-    </svg>
-
-    <div class="bilingual">
-      <div class="col-en">
-        <h1 class="headline">His forts still stand. His way of thinking still leads. Let's carry it into a <em>new Maharashtra</em>.</h1>
-        <p class="subline">A platform and a community taking shape — to explore the forts anew, spread his life and teachings, protect our culture, and help the people of Maharashtra rise together.</p>
-      </div>
-      <div class="col-mr">
-        <p class="headline mr">त्यांचे गड आजही उभे आहेत. त्यांचा विचार आजही मार्ग दाखवतो. चला, तो नव्या महाराष्ट्रात पुढे नेऊया.</p>
-        <p class="subline mr">एक व्यासपीठ आणि एक समुदाय आकार घेत आहे — गड नव्याने अनुभवण्यासाठी, त्यांचे जीवन आणि विचार पसरवण्यासाठी, आपली संस्कृती जपण्यासाठी, आणि महाराष्ट्रातील माणसांना एकत्र पुढे नेण्यासाठी.</p>
-      </div>
-    </div>
-
-    <div class="cta-row">
-      <a href="#join" class="btn">Join us</a>
-      <div class="count" id="count" aria-label="Time until we open">
-        <div class="u"><div class="n" id="d">00</div><div class="l">Days</div></div>
-        <div class="u"><div class="n" id="h">00</div><div class="l">Hours</div></div>
-        <div class="u"><div class="n" id="m">00</div><div class="l">Minutes</div></div>
-      </div>
-      <p class="opening">We open in <b>one week</b>.</p>
-    </div>
-  </div>
-  <div class="scrollcue">Scroll</div>
+<div class="boot" id="boot" aria-hidden="true"><div class="boot-in"><pre class="boot-text" data-lines="MAHASHIVAJI FOUNDATION · OPEN FILES|&gt; establishing link ................ ok|&gt; node: fursungi, haveli, pune 412308|&gt; loading the progress loop ........ 6 verbs|&gt; reading the civic charter ........ no party · no fee · no caste field|&gt; mounting /archive ................ 39 files|&gt; ready."></pre><p class="boot-skip">Press any key or tap to skip</p></div></div><a class="skip" href="#main">Skip to content</a>
+<div class="fx-grain" aria-hidden="true"></div><div class="fx-scan" aria-hidden="true"></div>
+<div class="sbar" aria-hidden="true"><div class="wrap sbar-row"><span><i class="dot"></i>Link · secure</span><span class="hide-s">Node · Fursungi, Pune</span><span>IST <b data-clock>--:--:--</b></span><span class="hide-s">Session <b data-sess>----</b></span><span>Read <b data-read>0%</b></span></div></div>
+<header class="site-head">
+ <div class="wrap head-row">
+  <a class="brand" href="index.html" aria-label="MahaShivaji Foundation home"><img class="bust" src="assets/img/bust-orange.png" alt="" width="26" height="34"><span class="bt"><b>MahaShivaji</b><span>Foundation</span></span></a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav" aria-label="Main"><a href="begin.html"><span class="tl">~/</span>Begin</a><a href="network.html"><span class="tl">~/</span>Network</a><a href="ventures.html"><span class="tl">~/</span>Ventures</a><a href="academy.html"><span class="tl">~/</span>Academy</a><a href="civic-lab.html"><span class="tl">~/</span>Civic Lab</a><a href="frontier.html"><span class="tl">~/</span>Frontier</a><a href="library.html"><span class="tl">~/</span>Archive</a><a href="foundation.html"><span class="tl">~/</span>Foundation</a><a class="cta" href="contribute.html">Join →</a></nav>
+ </div>
 </header>
-
-<!-- ================= PURSUITS ================= -->
-<section class="pursuits">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">What we're setting out to do</span>
-      <h2>Six ways to carry it forward</h2>
-      <div class="h2mr mr">तो वारसा पुढे नेण्याचे सहा मार्ग</div>
-      <svg class="flourish" viewBox="0 0 240 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-        <line x1="6" y1="12" x2="92" y2="12"/><line x1="148" y1="12" x2="234" y2="12"/>
-        <path d="M92,12 c-7,-9 -20,-9 -22,0 c-2,7 8,9 10,2"/>
-        <path d="M148,12 c7,-9 20,-9 22,0 c2,7 -8,9 -10,2"/>
-        <path d="M120,4 l9,8 l-9,8 l-9,-8 z" fill="currentColor" stroke="none" opacity=".9"/>
-      </svg>
-    </div>
-
-    <div class="plist" id="plist">
-      <div class="colhead"><div class="e">In English</div><div class="m mr">मराठीत</div></div>
-
-      <div class="pitem">
-        <div class="pnum">I</div>
-        <div class="pen"><h3>Explore the forts as never before</h3><p>Walk them, learn their true stories, and help protect them for the ones who come after.</p></div>
-        <div class="pmr mr"><h3>गड नव्याने अनुभवा</h3><p>त्यांवर चालत जा, त्यांच्या खऱ्या कथा जाणून घ्या, आणि पुढच्या पिढ्यांसाठी ते जपण्यास मदत करा.</p></div>
-      </div>
-
-      <div class="pitem">
-        <div class="pnum">II</div>
-        <div class="pen"><h3>Carry his life and teachings</h3><p>The real account, made alive and accessible for a new generation, in every corner of Maharashtra.</p></div>
-        <div class="pmr mr"><h3>त्यांचे जीवन आणि विचार पुढे न्या</h3><p>खरा इतिहास, नव्या पिढीसाठी जिवंत आणि सोप्या रूपात — महाराष्ट्राच्या कानाकोपऱ्यात.</p></div>
-      </div>
-
-      <div class="pitem">
-        <div class="pnum">III</div>
-        <div class="pen"><h3>Protect what makes us Marathi</h3><p>Our art, our food, our language and our crafts — safeguarded before they fade.</p></div>
-        <div class="pmr mr"><h3>आपली मराठी ओळख जपा</h3><p>आपली कला, खाद्य, भाषा आणि हस्तकला — लोप पावण्याआधी जपूया.</p></div>
-      </div>
-
-      <div class="pitem">
-        <div class="pnum">IV</div>
-        <div class="pen"><h3>Build for the future</h3><p>Local hubs where the young learn what will shape their lives — AI, robotics, energy and more.</p></div>
-        <div class="pmr mr"><h3>भविष्यासाठी उभारूया</h3><p>स्थानिक केंद्रे, जिथे तरुण शिकतील भविष्य घडवणारे — कृत्रिम बुद्धिमत्ता, रोबोटिक्स, ऊर्जा आणि बरेच काही.</p></div>
-      </div>
-
-      <div class="pitem">
-        <div class="pnum">V</div>
-        <div class="pen"><h3>Stand with our farmers</h3><p>Knowledge, tools and strength for the people who feed Maharashtra.</p></div>
-        <div class="pmr mr"><h3>शेतकऱ्यांच्या पाठीशी</h3><p>महाराष्ट्राला अन्न देणाऱ्यांसाठी ज्ञान, साधने आणि बळ.</p></div>
-      </div>
-
-      <div class="pitem">
-        <div class="pnum">VI</div>
-        <div class="pen"><h3>Learn to lead</h3><p>Discipline, strategy, and the courage to do things the right way — in school, work and life.</p></div>
-        <div class="pmr mr"><h3>नेतृत्व शिका</h3><p>शिस्त, रणनीती आणि योग्य मार्गाने काम करण्याचे धैर्य — शाळेत, कामात आणि जीवनात.</p></div>
-      </div>
-    </div>
+<main id="main">
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><p class="path">cd ~/mahashivaji<span class="caret"></span></p><h1 data-scramble>MahaShivaji<br>Foundation</h1><p class="tag">Open plans for building Maharashtra.</p><p class="lead">A movement, not an institution. Free to everyone, owned by no one, and carried by the people who build. It begins with you, and it does not stop.</p><div class="actions"><a class="btn primary" href="begin.html">Begin with yourself →</a><a class="btn" href="library.html#random">Pull a random file →</a></div><div class="meta"><span>No fee</span><span>No party</span><span>No caste field</span></div></div><div class="hero-art"><svg class="loop" viewBox="0 0 540 540" role="img" aria-label="The Progress Loop: Connect, Create, Develop, Contribute, Improve, Progress, and again"><defs><clipPath id="medclip"><circle cx="270" cy="270" r="128"/></clipPath><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FF6A13"/></marker></defs><g class="spin"><circle cx="270" cy="270" r="246" fill="none" stroke="#FF6A13" stroke-opacity=".35" stroke-width="1" stroke-dasharray="1 9"/></g><g class="spin rev"><circle cx="270" cy="270" r="150" fill="none" stroke="#FF6A13" stroke-opacity=".3" stroke-width="1" stroke-dasharray="14 6 2 6"/></g><path d="M24 270 L516 270 M270 24 L270 516" stroke="#FF6A13" stroke-opacity=".12"/><path class="arc" d="M323.3 71.0 A206 206 0 0 1 415.7 124.3" fill="none" stroke="#FF6A13" stroke-width="1.2" marker-end="url(#ar)"/><path class="arc" d="M469.0 216.7 A206 206 0 0 1 469.0 323.3" fill="none" stroke="#FF6A13" stroke-width="1.2" marker-end="url(#ar)"/><path class="arc" d="M415.7 415.7 A206 206 0 0 1 323.3 469.0" fill="none" stroke="#FF6A13" stroke-width="1.2" marker-end="url(#ar)"/><path class="arc" d="M216.7 469.0 A206 206 0 0 1 124.3 415.7" fill="none" stroke="#FF6A13" stroke-width="1.2" marker-end="url(#ar)"/><path class="arc" d="M71.0 323.3 A206 206 0 0 1 71.0 216.7" fill="none" stroke="#FF6A13" stroke-width="1.2" marker-end="url(#ar)"/><path class="arc" d="M124.3 124.3 A206 206 0 0 1 216.7 71.0" fill="none" stroke="#FF6A13" stroke-width="1.2" marker-end="url(#ar)"/><image href="assets/img/medallion-wire.webp" x="142" y="142" width="256" height="256" clip-path="url(#medclip)"/><a href="network.html" class="node"><rect x="224.0" y="42.0" width="92" height="44" fill="#000" stroke="#FF6A13" stroke-width="1"/><text x="232.0" y="58.0" font-family="Plex Mono, monospace" font-size="9" fill="#FF6A13">01</text><text x="270.0" y="75.0" text-anchor="middle" font-family="Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#EDE8DE">CONNECT</text></a><a href="ventures.html" class="node"><rect x="402.4" y="145.0" width="92" height="44" fill="#000" stroke="#FF6A13" stroke-width="1"/><text x="410.4" y="161.0" font-family="Plex Mono, monospace" font-size="9" fill="#FF6A13">02</text><text x="448.4" y="178.0" text-anchor="middle" font-family="Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#EDE8DE">CREATE</text></a><a href="academy.html" class="node"><rect x="402.4" y="351.0" width="92" height="44" fill="#000" stroke="#FF6A13" stroke-width="1"/><text x="410.4" y="367.0" font-family="Plex Mono, monospace" font-size="9" fill="#FF6A13">03</text><text x="448.4" y="384.0" text-anchor="middle" font-family="Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#EDE8DE">DEVELOP</text></a><a href="contribute.html" class="node"><rect x="224.0" y="454.0" width="92" height="44" fill="#000" stroke="#FF6A13" stroke-width="1"/><text x="232.0" y="470.0" font-family="Plex Mono, monospace" font-size="9" fill="#FF6A13">04</text><text x="270.0" y="487.0" text-anchor="middle" font-family="Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#EDE8DE">CONTRIBUTE</text></a><a href="civic-lab.html" class="node"><rect x="45.6" y="351.0" width="92" height="44" fill="#000" stroke="#FF6A13" stroke-width="1"/><text x="53.6" y="367.0" font-family="Plex Mono, monospace" font-size="9" fill="#FF6A13">05</text><text x="91.6" y="384.0" text-anchor="middle" font-family="Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#EDE8DE">IMPROVE</text></a><a href="frontier.html" class="node"><rect x="45.6" y="145.0" width="92" height="44" fill="#000" stroke="#FF6A13" stroke-width="1"/><text x="53.6" y="161.0" font-family="Plex Mono, monospace" font-size="9" fill="#FF6A13">06</text><text x="91.6" y="178.0" text-anchor="middle" font-family="Plex Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#EDE8DE">PROGRESS</text></a></svg></div></div></section>
+<section class="block tight" id="files"><div class="wrap"><div class="dirbar"><span class="path">cd ~/all files</span><span>/movement/ <b>9 files</b></span><span class="hide-s">Sort · loop order</span></div><div class="files"><a class="file rv" href="begin.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="100" cy="100" r="72"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="24"/><circle cx="100" cy="100" r="8"/><path d="M100 20 L100 180 M20 100 L180 100" opacity=".5"/></svg></div><p class="fmeta">00 · Begin</p><h3>Begin with yourself</h3><p>A pledge, a resolution you keep, and guides to fixing things yourself.</p></a><a class="file rv" href="network.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M50 60 L140 40" opacity=".45"/><path d="M50 60 L160 120" opacity=".45"/><path d="M50 60 L90 150" opacity=".45"/><path d="M50 60 L40 130" opacity=".45"/><path d="M50 60 L105 95" opacity=".45"/><path d="M140 40 L160 120" opacity=".45"/><path d="M140 40 L90 150" opacity=".45"/><path d="M140 40 L40 130" opacity=".45"/><path d="M140 40 L105 95" opacity=".45"/><path d="M160 120 L90 150" opacity=".45"/><path d="M160 120 L40 130" opacity=".45"/><path d="M160 120 L105 95" opacity=".45"/><path d="M90 150 L40 130" opacity=".45"/><path d="M90 150 L105 95" opacity=".45"/><path d="M40 130 L105 95" opacity=".45"/><rect x="45" y="55" width="10" height="10"/><rect x="135" y="35" width="10" height="10"/><rect x="155" y="115" width="10" height="10"/><rect x="85" y="145" width="10" height="10"/><rect x="35" y="125" width="10" height="10"/><rect x="100" y="90" width="10" height="10"/></svg></div><p class="fmeta">01 · Connect</p><h3>The Network</h3><p>Mentors and builders, found by skill and never by surname.</p></a><a class="file rv" href="ventures.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M100 30 L160 64 L160 134 L100 168 L40 134 L40 64 Z M100 30 L100 100 M40 64 L100 100 L160 64 M100 100 L100 168"/><path d="M60 76 L60 145 M120 88 L120 157"/><path d="M80 88 L80 156 M140 76 L140 146"/></svg></div><p class="fmeta">02 · Create</p><h3>Ventures</h3><p>Idea to enterprise in the right order, at the lowest cost.</p></a><a class="file rv" href="academy.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M30 170 L30 140 L65 140 L65 110 L100 110 L100 80 L135 80 L135 50 L170 50 L170 170 Z"/><path d="M30 170 L170 170 M65 140 L65 170 M100 110 L100 170 M135 80 L135 170 M150 30 L170 50 L150 50"/></svg></div><p class="fmeta">03 · Develop</p><h3>Academy</h3><p>Nine open pathways, from first lesson to mastery.</p></a><a class="file rv" href="contribute.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="100" cy="62" r="26"/><path d="M45 175 C45 125 70 105 100 105 C130 105 155 125 155 175"/><path d="M60 175 L60 150 M140 175 L140 150" opacity=".5"/></svg></div><p class="fmeta">04 · Contribute</p><h3>Contribute</h3><p>One hour a month. Time and skill, never money.</p></a><a class="file rv" href="civic-lab.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M30 40 L20 170" opacity=".7"/><path d="M25 45 L175 39" opacity=".7"/><path d="M58 40 L48 170" opacity=".7"/><path d="M25 70 L175 64" opacity=".7"/><path d="M86 40 L76 170" opacity=".7"/><path d="M25 95 L175 89" opacity=".7"/><path d="M114 40 L104 170" opacity=".7"/><path d="M25 120 L175 114" opacity=".7"/><path d="M142 40 L132 170" opacity=".7"/><path d="M25 145 L175 139" opacity=".7"/><path d="M170 40 L160 170" opacity=".7"/><path d="M25 170 L175 164" opacity=".7"/><rect x="88" y="80" width="30" height="30"/></svg></div><p class="fmeta">05 · Improve</p><h3>Civic Lab</h3><p>Fix the place you live in, with evidence and without anger.</p></a><a class="file rv" href="frontier.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M30 150 L80 100 L110 125 L170 55 M140 55 L170 55 L170 85"/><path d="M30 170 L170 170 M30 170 L30 30" opacity=".5"/></svg></div><p class="fmeta">06 · Progress</p><h3>Frontier</h3><p>Eight industries of the next fifty years, and how to arrive early.</p></a><a class="file rv" href="library.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M55 25 L125 25 L150 50 L150 175 L55 175 Z M125 25 L125 50 L150 50"/><path d="M70 70 L135 70"/><path d="M70 86 L123 86"/><path d="M70 102 L111 102"/><path d="M70 118 L135 118"/><path d="M70 134 L123 134"/><path d="M70 150 L111 150"/></svg></div><p class="fmeta">39 · Files</p><h3>The Archive</h3><p>Every portal, course and fund we have checked, in one place.</p></a><a class="file rv" href="foundation.html"><div class="thumb"><svg class="wf draw" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M20 170 L20 110 L35 110 L35 100 L45 100 L45 110 L60 110 L60 80 L75 80 L75 70 L85 70 L85 80 L115 80 L115 70 L125 70 L125 80 L140 80 L140 110 L155 110 L155 100 L165 100 L165 110 L180 110 L180 170 Z"/><path d="M88 170 L88 135 Q100 118 112 135 L112 170 M20 140 L180 140" opacity=".6"/><path d="M100 70 L100 30 L124 38 L100 46"/></svg></div><p class="fmeta">∞ · Charter</p><h3>The Foundation</h3><p>Who we are, what we refuse, and who keeps us honest.</p></a></div></div></section>
+<section class="block " id="begin"><div class="wrap"><div class="sec-head"><div><p class="kicker">// It begins with you</p><h2 data-scramble>Nobody joins a movement. They decide, alone, and find others who decided too.</h2></div><p>Three things you can do today without asking anyone's permission.</p></div><div class="grid g3"><a class="card link-card rv" href="begin.html#inspire"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="100" cy="100" r="72"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="24"/><circle cx="100" cy="100" r="8"/><path d="M100 20 L100 180 M20 100 L180 100" opacity=".5"/></svg><p class="label">Self-inspiration</p><h3>A practice, not a mood.</h3><p>The pledge, six questions for the evening, and a weekly review.</p><span class="go">Open →</span></a><a class="card link-card rv" href="begin.html#resolve"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M30 150 L80 100 L110 125 L170 55 M140 55 L170 55 L170 85"/><path d="M30 170 L170 170 M30 170 L30 30" opacity=".5"/></svg><p class="label">Self-resolution</p><h3>Make one resolution. Keep it.</h3><p>Choose what you will do, and by when. Keep it, or hand it to someone who will hold you to it.</p><span class="go">Open →</span></a><a class="card link-card rv" href="begin.html#fix"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M55 25 L125 25 L150 50 L150 175 L55 175 Z M125 25 L125 50 L150 50"/><path d="M70 70 L135 70"/><path d="M70 86 L123 86"/><path d="M70 102 L111 102"/><path d="M70 118 L135 118"/><path d="M70 134 L123 134"/><path d="M70 150 L111 150"/></svg><p class="label">Self-resolve</p><h3>Fix it yourself, step by step.</h3><p>Certificates, registrations, grievances, fraud: the official route, in plain words.</p><span class="go">Open →</span></a></div></div></section>
+<section class="block " id="loop"><div class="wrap"><div class="sec-head"><div><p class="kicker">// The method</p><h2 data-scramble>Six verbs. Then again.</h2></div><p>Rayat taught a generation to earn and learn. Our method is six words long. Repeat it until it becomes the way you work.</p></div><div class="rows"><a class="row rv" href="network.html"><span class="idx">01</span><h3><span class="verb">Connect</span><small>The Network</small></h3><p>Find the person who has done it before. Become that person for someone else.</p><span class="arr">→</span></a><a class="row rv" href="ventures.html"><span class="idx">02</span><h3><span class="verb">Create</span><small>Ventures</small></h3><p>Start small, start properly, and finish what you start.</p><span class="arr">→</span></a><a class="row rv" href="academy.html"><span class="idx">03</span><h3><span class="verb">Develop</span><small>Academy</small></h3><p>Learn something useful every month, for as long as you live.</p><span class="arr">→</span></a><a class="row rv" href="contribute.html"><span class="idx">04</span><h3><span class="verb">Contribute</span><small>Contribute</small></h3><p>Give an hour of what you know. Never money.</p><span class="arr">→</span></a><a class="row rv" href="civic-lab.html"><span class="idx">05</span><h3><span class="verb">Improve</span><small>Civic Lab</small></h3><p>Fix one thing near you, with evidence.</p><span class="arr">→</span></a><a class="row rv" href="frontier.html"><span class="idx">06</span><h3><span class="verb">Progress</span><small>Frontier</small></h3><p>Measure the year honestly, and begin the next one higher.</p><span class="arr">→</span></a></div><p class="again">→ Begin again, from higher ground.</p></div></section>
+<section class="block statement"><div class="wrap"><p class="kicker">// The one rule</p><p class="big-quote" data-scramble>Maharashtra belongs to no caste, no faith and no party. It belongs to <em>those who build it.</em></p><p class="note center">We never ask your caste, religion, party or income. Not on a form, not in a circle, not in a conversation.</p></div></section>
+<section class="block " id="journey"><div class="wrap"><div class="sec-head"><div><p class="kicker">// Where you stand</p><h2 data-scramble>Every builder passes through four stages.</h2></div><p>Find yours. See what matters now. Act on it yourself.</p></div><div class="ladder"><a class="rung rv" href="library.html#stage=spark"><span class="bar" style="width:25%"></span><span class="stg">STAGE 01 / 04</span><h3>Spark</h3><div class="sub">An idea, a skill, an intention</div><ul><li>Test the idea with ten real customers</li><li>Write a one-page plan</li><li>Find a mentor who has done it</li></ul><span class="go">Resources</span></a><a class="rung rv" href="library.html#stage=launch"><span class="bar" style="width:50%"></span><span class="stg">STAGE 02 / 04</span><h3>Launch</h3><div class="sub">First customers, first income</div><ul><li>Register properly, at minimal cost</li><li>Open a separate business account</li><li>Build a simple digital presence</li></ul><span class="go">Resources</span></a><a class="rung rv" href="library.html#stage=grow"><span class="bar" style="width:75%"></span><span class="stg">STAGE 03 / 04</span><h3>Grow</h3><div class="sub">A team, systems, steady revenue</div><ul><li>Hire and train well</li><li>Access working capital and credit</li><li>Sell through new channels</li></ul><span class="go">Resources</span></a><a class="rung rv" href="library.html#stage=scale"><span class="bar" style="width:100%"></span><span class="stg">STAGE 04 / 04</span><h3>Scale</h3><div class="sub">New markets, new capability</div><ul><li>Sell to government and enterprise</li><li>Raise growth capital</li><li>Build technology into operations</li></ul><span class="go">Resources</span></a></div></div></section>
+<section class="block "><div class="wrap"><div class="sec-head"><div><p class="kicker">// What you need</p><h2 data-scramble>Most problems can be solved by the person who has them.</h2></div><p>They need the right door in front of them. These are the doors.</p></div><div class="needs"><a class="need rv" href="library.html#need=market"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="100" cy="100" r="70"/><ellipse cx="100" cy="100" rx="70" ry="70"/><ellipse cx="100" cy="100" rx="52" ry="70"/><ellipse cx="100" cy="100" rx="30" ry="70"/><ellipse cx="100" cy="100" rx="10" ry="70"/><ellipse cx="100" cy="100" rx="70" ry="0.2"/><ellipse cx="100" cy="62" rx="59" ry="3.3"/><ellipse cx="100" cy="138" rx="59" ry="3.3"/><path d="M20 172 L180 172"/></svg><span><b>Market access</b><span>Customers, channels, buyers</span></span></a><a class="need rv" href="library.html#need=finance"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M30 170 L30 140 L65 140 L65 110 L100 110 L100 80 L135 80 L135 50 L170 50 L170 170 Z"/><path d="M30 170 L170 170 M65 140 L65 170 M100 110 L100 170 M135 80 L135 170 M150 30 L170 50 L150 50"/></svg><span><b>Finance &amp; capital</b><span>Credit, incubation, investors</span></span></a><a class="need rv" href="library.html#need=legal"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M55 25 L125 25 L150 50 L150 175 L55 175 Z M125 25 L125 50 L150 50"/><path d="M70 70 L135 70"/><path d="M70 86 L123 86"/><path d="M70 102 L111 102"/><path d="M70 118 L135 118"/><path d="M70 134 L123 134"/><path d="M70 150 L111 150"/></svg><span><b>Legal &amp; formalities</b><span>Registrations, compliance</span></span></a><a class="need rv" href="library.html#need=talent"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="100" cy="62" r="26"/><path d="M45 175 C45 125 70 105 100 105 C130 105 155 125 155 175"/><path d="M60 175 L60 150 M140 175 L140 150" opacity=".5"/></svg><span><b>Talent &amp; teams</b><span>Hiring, apprenticeships</span></span></a><a class="need rv" href="library.html#need=tech"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="55" y="55" width="90" height="90"/><rect x="78" y="78" width="44" height="44"/><path d="M65 55 L65 35 M65 145 L65 165 M55 65 L35 65 M145 65 L165 65"/><path d="M82 55 L82 35 M82 145 L82 165 M55 82 L35 82 M145 82 L165 82"/><path d="M99 55 L99 35 M99 145 L99 165 M55 99 L35 99 M145 99 L165 99"/><path d="M116 55 L116 35 M116 145 L116 165 M55 116 L35 116 M145 116 L165 116"/><path d="M133 55 L133 35 M133 145 L133 165 M55 133 L35 133 M145 133 L165 133"/></svg><span><b>Technology &amp; AI</b><span>Tools, automation, data</span></span></a><a class="need rv" href="library.html#need=skills"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><circle cx="100" cy="100" r="72"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="40"/><circle cx="100" cy="100" r="24"/><circle cx="100" cy="100" r="8"/><path d="M100 20 L100 180 M20 100 L180 100" opacity=".5"/></svg><span><b>Skills &amp; learning</b><span>Courses, certification</span></span></a><a class="need rv" href="library.html#need=civic"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M30 40 L20 170" opacity=".7"/><path d="M25 45 L175 39" opacity=".7"/><path d="M58 40 L48 170" opacity=".7"/><path d="M25 70 L175 64" opacity=".7"/><path d="M86 40 L76 170" opacity=".7"/><path d="M25 95 L175 89" opacity=".7"/><path d="M114 40 L104 170" opacity=".7"/><path d="M25 120 L175 114" opacity=".7"/><path d="M142 40 L132 170" opacity=".7"/><path d="M25 145 L175 139" opacity=".7"/><path d="M170 40 L160 170" opacity=".7"/><path d="M25 170 L175 164" opacity=".7"/><rect x="88" y="80" width="30" height="30"/></svg><span><b>Civic &amp; public services</b><span>Grievances, information</span></span></a><a class="need rv" href="library.html#need=heritage"><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M20 170 L20 110 L35 110 L35 100 L45 100 L45 110 L60 110 L60 80 L75 80 L75 70 L85 70 L85 80 L115 80 L115 70 L125 70 L125 80 L140 80 L140 110 L155 110 L155 100 L165 100 L165 110 L180 110 L180 170 Z"/><path d="M88 170 L88 135 Q100 118 112 135 L112 170 M20 140 L180 140" opacity=".6"/><path d="M100 70 L100 30 L124 38 L100 46"/></svg><span><b>Heritage &amp; knowledge</b><span>Reference, history</span></span></a></div></div></section>
+<section class="block "><div class="wrap"><div class="sec-head"><div><p class="kicker">// Frontier</p><h2 data-scramble>The industries that will shape the next fifty years.</h2></div><p>We watch where the work is moving and tell one another early.</p></div><div class="grid g4"><div class="sector rv"><div class="sec-top"><span class="num">SECTOR 01</span><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M50 60 L140 40" opacity=".45"/><path d="M50 60 L160 120" opacity=".45"/><path d="M50 60 L90 150" opacity=".45"/><path d="M50 60 L40 130" opacity=".45"/><path d="M50 60 L105 95" opacity=".45"/><path d="M140 40 L160 120" opacity=".45"/><path d="M140 40 L90 150" opacity=".45"/><path d="M140 40 L40 130" opacity=".45"/><path d="M140 40 L105 95" opacity=".45"/><path d="M160 120 L90 150" opacity=".45"/><path d="M160 120 L40 130" opacity=".45"/><path d="M160 120 L105 95" opacity=".45"/><path d="M90 150 L40 130" opacity=".45"/><path d="M90 150 L105 95" opacity=".45"/><path d="M40 130 L105 95" opacity=".45"/><rect x="45" y="55" width="10" height="10"/><rect x="135" y="35" width="10" height="10"/><rect x="155" y="115" width="10" height="10"/><rect x="85" y="145" width="10" height="10"/><rect x="35" y="125" width="10" height="10"/><rect x="100" y="90" width="10" height="10"/></svg></div><h3>Artificial intelligence &amp; data</h3><p>Every industry in the state will be reshaped by software that learns. The advantage goes to those who can apply it, not merely use it.</p></div><div class="sector rv"><div class="sec-top"><span class="num">SECTOR 02</span><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><rect x="55" y="55" width="90" height="90"/><rect x="78" y="78" width="44" height="44"/><path d="M65 55 L65 35 M65 145 L65 165 M55 65 L35 65 M145 65 L165 65"/><path d="M82 55 L82 35 M82 145 L82 165 M55 82 L35 82 M145 82 L165 82"/><path d="M99 55 L99 35 M99 145 L99 165 M55 99 L35 99 M145 99 L165 99"/><path d="M116 55 L116 35 M116 145 L116 165 M55 116 L35 116 M145 116 L165 116"/><path d="M133 55 L133 35 M133 145 L133 165 M55 133 L35 133 M145 133 L165 133"/></svg></div><h3>Semiconductors &amp; electronics</h3><p>India is building a chip and electronics manufacturing base. Design, testing and assembly will need skilled people at every level.</p></div><div class="sector rv"><div class="sec-top"><span class="num">SECTOR 03</span><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M20 50 C60 28 80 72 100 50 S150 30 180 50"/><path d="M20 67 C60 48 80 86 100 67 S150 49 180 67"/><path d="M20 84 C60 68 80 100 100 84 S150 68 180 84"/><path d="M20 101 C60 88 80 114 100 101 S150 87 180 101"/><path d="M20 118 C60 108 80 128 100 118 S150 106 180 118"/><path d="M20 135 C60 128 80 142 100 135 S150 125 180 135"/><path d="M20 152 C60 148 80 156 100 152 S150 144 180 152"/></svg></div><h3>Electric mobility &amp; clean energy</h3><p>Pune and its surrounding belt are already automotive country. The shift to electric and solar opens work in installation, service and design.</p></div><div class="sector rv"><div class="sec-top"><span class="num">SECTOR 04</span><svg class="wf " viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"><path d="M30 40 L20 170" opacity=".7"/><path d="M25 45 L175 39" opacity=".7"/><path d="M58 40 L48 170" opacity=".7"/><path d="M25 70 L175 64" opacity=".7"/><path d="M86 40 L76 170" opacity=".7"/><path d="M25 95 L175 89" opacity=".7"/><path d="M114 40 L104 170" opacity=".7"/><path d="M25 120 L175 114" opacity=".7"/><path d="M142 40 L132 170" opacity=".7"/><path d="M25 145 L175 139" opacity=".7"/><path d="M170 40 L160 170" opacity=".7"/><path d="M25 170 L175 164" opacity=".7"/><rect x="88" y="80" width="30" height="30"/></svg></div><h3>Agri-tech &amp; food processing</h3><p>Maharashtra's farms can capture far more value through processing, cold chains, traceability and direct markets.</p></div></div><p class="more"><a class="link" href="frontier.html">All eight sectors →</a></p></div></section>
+<section class="block insp"><div class="wrap insp-grid"><img class="medal" src="assets/img/medallion-wire.webp" alt="MahaShivaji Foundation medallion, drawn in line" width="420" height="420" loading="lazy"><div><p class="kicker">// The name</p><h2 data-scramble>A way of building, not a monument.</h2><p>Chhatrapati Shivaji Maharaj protected the cultivator's livelihood, appointed people on merit, drew talent from every quarter, governed in his own language, and prepared for the future before it arrived.</p><p>We take the name for that method. It belongs to no party, community or ritual, and we will not let it be used for one.</p><p class="more"><a class="link" href="foundation.html#inspiration">Six values, each with a source →</a></p></div></div></section>
+<section class="block " id="pledge"><div class="wrap"><div class="two-col"><div><div class="sec-head solo"><div><p class="kicker">// The pledge</p><h2 data-scramble>Seven lines you say to yourself.</h2><p class=lead>Not to us. A pledge is kept by the person who makes it.</p></div></div><p><a class="link" href="begin.html#resolve">Turn a line into a resolution →</a></p></div><div class="charter"><ol><li class="rv">I will connect: seek out those who know more than I do, and make room for those who know less.</li><li class="rv">I will create: begin before I feel ready, and finish what I begin.</li><li class="rv">I will develop: learn something useful every month, for as long as I live.</li><li class="rv">I will contribute: give an hour each month to someone building their way.</li><li class="rv">I will improve: fix one thing near me, with evidence, not anger.</li><li class="rv">I will progress: measure my year honestly, and begin the next one higher.</li><li class="rv">I will stand against no one: caste, faith, region and party stay outside the work.</li></ol></div></div></div></section>
+<section class="block "><div class="wrap"><div class="sec-head"><div><p class="kicker">// Commitments</p><h2 data-scramble>What we hold ourselves to.</h2></div><p>Stated plainly, so that anyone can check.</p></div><div class="commit"><div class="rv"><div class="fig" data-count="0">0</div><p>Fees, donations or paid placements. Ever.</p></div><div class="rv"><div class="fig" data-count="9">9</div><p>Open learning pathways, foundation to mastery.</p></div><div class="rv"><div class="fig" data-count="8">8</div><p>Frontier sectors followed for Maharashtra.</p></div><div class="rv"><div class="fig"><span data-count="100">100</span><sup>TARGET</sup></div><p>Verified mentors on the Network by May 2027.</p></div></div></div></section>
+<section class="block " id="write"><div class="wrap"><div class="sec-head"><div><p class="kicker">// Write to us</p><h2 data-scramble>No membership fee. No forms. Just write.</h2></div><p>Choose a line. Your email opens ready to send, with what we need already listed.</p></div><div class="corr"><div class="ck">Correspondence</div><dl><dt>Join as a mentor<small>One hour a month for founders, students and citizens.</small></dt><dd><a class="mail" href="mailto:team@mahashivaji.org?subject=Mentor%20application&amp;body=Name%3A%0ATown%2C%20district%20or%20country%3A%0AField%20of%20expertise%3A%0AOrganisation%20and%20role%3A%0ALinks%20or%20credentials%3A%0AHow%20you%20would%20like%20to%20help%3A%0A">team@mahashivaji.org</a></dd><dt>Propose a partnership<small>Colleges, companies, professional firms, diaspora associations.</small></dt><dd><a class="mail" href="mailto:team@mahashivaji.org?subject=Partnership%20proposal&amp;body=Institution%3A%0AYour%20name%20and%20role%3A%0ACity%3A%0AWhat%20you%20could%20contribute%20%28mentors%2C%20venues%2C%20content%2C%20opportunities%29%3A%0A">team@mahashivaji.org</a></dd><dt>Ask a question<small>About starting, growing or scaling a venture.</small></dt><dd><a class="mail" href="mailto:team@mahashivaji.org?subject=Question%20for%20a%20mentor&amp;body=Name%3A%0ATown%20and%20district%3A%0AStage%20%28Spark%20/%20Launch%20/%20Grow%20/%20Scale%29%3A%0ASubject%3A%0AYour%20question%20%28what%20you%20do%2C%20what%20you%20have%20tried%2C%20what%20you%20need%20to%20decide%29%3A%0A">team@mahashivaji.org</a></dd><dt>Propose a pilot area<small>A village, town or ward for the Civic Lab.</small></dt><dd><a class="mail" href="mailto:team@mahashivaji.org?subject=Civic%20Lab%20pilot%20area&amp;body=Name%3A%0AVillage%2C%20town%20or%20ward%2C%20with%20district%3A%0AProposing%20the%20area%2C%20or%20offering%20to%20serve%20as%20Civic%20Steward%3A%0AReasons%3A%0A">team@mahashivaji.org</a></dd><dt>Anything else<small>We read everything and reply within a week.</small></dt><dd><a class="mail" href="mailto:team@mahashivaji.org?subject=Enquiry">team@mahashivaji.org</a></dd></dl></div></div></section>
+</main>
+<div class="ticker" aria-hidden="true"><div class="ticker-in"><span>Connect → Create → Develop → Contribute → Improve → Progress → Again → </span><span>Connect → Create → Develop → Contribute → Improve → Progress → Again → </span></div></div>
+<footer class="site-foot">
+ <div class="wrap">
+  <p class="motto">For your own rise, and for Maharashtra's.</p>
+  <div class="fgrid">
+   <div class="fbrand"><img src="assets/img/medallion-wire.webp" alt="" width="120" height="120"><div class="name">MahaShivaji Foundation</div>
+    <p>An independent, non-partisan movement of Maharashtrians, at home and abroad. No fee, no party, no caste field. Ever.</p></div>
+   <div class="fcol"><h4>/movement</h4><a href="begin.html">Begin with yourself</a><a href="network.html">The Network</a><a href="ventures.html">Ventures</a><a href="academy.html">Academy</a><a href="civic-lab.html">Civic Lab</a><a href="frontier.html">Frontier</a><a href="library.html">The Archive</a></div>
+   <div class="fcol"><h4>/foundation</h4><a href="foundation.html">Our story</a><a href="foundation.html#lineage">Those who came before</a><a href="foundation.html#inspiration">Our inspiration</a><a href="foundation.html#charter">Civic Charter</a><a href="foundation.html#panel">Independence Panel</a><a href="contribute.html">Contribute</a></div>
+   <div class="fcol"><h4>/write</h4><p class="loc">Fursungi, Haveli<br>Pune 412308, Maharashtra</p><p><a class="mail" href="mailto:team@mahashivaji.org?subject=Enquiry">team@mahashivaji.org</a></p><a href="foundation.html#location">About Fursungi</a></div>
   </div>
-</section>
-
-<!-- ================= JOIN ================= -->
-<section class="join" id="join">
-  <div class="wrap">
-    <span class="kicker">Be part of it <span class="mr">· यात सहभागी व्हा</span></span>
-
-    <div class="bilingual">
-      <div class="col-en">
-        <h2>This is only the beginning — and it belongs to all of us.</h2>
-        <p class="lead">Students, farmers, makers, teachers, dreamers — every Maharashtrian has a place here. Leave your name, and we'll show you how to take part.</p>
-      </div>
-      <div class="col-mr">
-        <h2 class="mr">ही तर केवळ सुरुवात आहे — आणि ती आपल्या सर्वांची आहे.</h2>
-        <p class="lead mr">विद्यार्थी, शेतकरी, निर्माते, शिक्षक, स्वप्न पाहणारे — प्रत्येक मराठी माणसासाठी इथे जागा आहे. तुमचे नाव नोंदवा, सहभागी कसे व्हायचे ते आम्ही सांगू.</p>
-      </div>
-    </div>
-
-    <!-- To collect emails: point the form at your Google Form / Mailchimp / Formspree endpoint,
-         e.g. <form class="signup" action="https://formspree.io/f/XXXX" method="POST"> and remove the JS handler. -->
-    <form class="signup" id="signup" novalidate>
-      <input type="email" id="email" name="email" placeholder="Your email · तुमचा ईमेल" aria-label="Your email" required />
-      <button type="submit" class="btn">Count me in</button>
-    </form>
-    <div class="thanks" id="thanks">You're in. We'll show you how to join within the week.<span class="mr">तुमची नोंद झाली. आठवड्याभरात सहभागी कसे व्हायचे ते आम्ही कळवू.</span></div>
-
-    <p class="comeback">Visit us again in <b>one week</b>. Doors — and forts — are opening.<span class="mr">एका आठवड्याने पुन्हा भेट द्या. दरवाजे — आणि गड — उघडत आहेत.</span></p>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-  <div class="glow foot"></div>
-  <img class="coin" src="coin.png" alt="Mahashivaji seal" />
-  <div class="site">mahashivaji.org</div>
-  <span class="jai mr">जय शिवराय</span>
-  <span class="made">Made in Maharashtra, for Maharashtra <span class="mr">· महाराष्ट्रासाठी</span></span>
+  <div class="legal"><span>© <span data-year>2026</span> MahaShivaji Foundation</span><span>General guidance, compiled with care. Not professional advice. External links lead to their owners.</span><a href="foundation.html#privacy">Privacy</a></div>
+ </div>
 </footer>
-
-<script>
-  /* Countdown — set your real launch moment here (7 days out by default) */
-  var LAUNCH = new Date("2026-09-03T18:00:00+05:30").getTime();
-  var d=document.getElementById('d'),h=document.getElementById('h'),m=document.getElementById('m');
-  function pad(n){return (n<10?'0':'')+n;}
-  function tick(){
-    var diff=LAUNCH-Date.now();
-    if(diff<=0){d.textContent='00';h.textContent='00';m.textContent='00';
-      document.querySelector('.opening').innerHTML='We are <b>opening now</b>.';return;}
-    d.textContent=pad(Math.floor(diff/86400000));
-    h.textContent=pad(Math.floor(diff%86400000/3600000));
-    m.textContent=pad(Math.floor(diff%3600000/60000));
-  }
-  tick(); setInterval(tick,30000);
-
-  /* Reveal pursuits on scroll */
-  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if('IntersectionObserver' in window && !reduce){
-    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
-    document.querySelectorAll('.pitem').forEach(function(el,i){el.style.transitionDelay=(i*60)+'ms';io.observe(el);});
-  }else{document.querySelectorAll('.pitem').forEach(function(el){el.classList.add('in');});}
-
-  /* Signup (client-side confirm; connect to your email service to store) */
-  var form=document.getElementById('signup'),thanks=document.getElementById('thanks'),email=document.getElementById('email');
-  form.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    var v=email.value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){email.focus();email.style.borderColor='#c56';return;}
-    /* TODO: send v to your list (Formspree / Mailchimp / Google Form) */
-    form.style.display='none';thanks.style.display='block';
-  });
-</script>
+<a class="wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+<script src="assets/site.js" defer></script>
 </body>
 </html>
