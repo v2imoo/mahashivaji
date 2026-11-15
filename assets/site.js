@@ -262,3 +262,70 @@ const MAHASHIVAJI = {
   });
   fillActs(); render(); renderList();
 })();
+
+/* Forts filter, districts filter/sort, fort quiz */
+(function () {
+  const forts = document.querySelector(".forts");
+  if (forts) {
+    const cards = [...forts.querySelectorAll(".fortc")], cnt = document.querySelector(".fcount");
+    document.querySelectorAll("[data-ff]").forEach(b => b.addEventListener("click", () => {
+      const v = b.dataset.ff; let n = 0;
+      document.querySelectorAll("[data-ff]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      cards.forEach(c => { const ok = v === "all" || (v === "u" ? c.dataset.u === "1" : c.dataset.k === v); c.hidden = !ok; if (ok) { n++; c.classList.add("in"); } });
+      if (cnt) cnt.textContent = n + " forts";
+    }));
+  }
+  const dists = document.querySelector(".dists");
+  if (dists) {
+    const cards = [...dists.querySelectorAll(".dist")], cnt = document.querySelector(".dcount");
+    const q = document.getElementById("dq"), so = document.getElementById("dsort"); let dv = "all";
+    function apply() {
+      const s = (q.value || "").trim().toLowerCase(); let n = 0;
+      cards.forEach(c => { const ok = (dv === "all" || c.dataset.dv === dv) && (!s || c.textContent.toLowerCase().includes(s)); c.hidden = !ok; if (ok) { n++; c.classList.add("in"); } });
+      cnt.textContent = n + (n === 1 ? " file" : " files");
+    }
+    document.querySelectorAll("[data-dv]").forEach(b => { if (b.tagName !== "BUTTON") return; b.addEventListener("click", () => {
+      dv = b.dataset.dv; document.querySelectorAll("button[data-dv]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false")); apply(); }); });
+    q.addEventListener("input", apply);
+    so.addEventListener("change", () => {
+      const a = cards.slice();
+      if (so.value === "pop") a.sort((x, y) => y.dataset.pop - x.dataset.pop);
+      else if (so.value === "az") a.sort((x, y) => x.querySelector("h3").textContent.localeCompare(y.querySelector("h3").textContent));
+      else a.sort((x, y) => x.dataset.i - y.dataset.i);
+      a.forEach(c => dists.appendChild(c));
+    });
+  }
+  const data = document.getElementById("q-data");
+  if (data) {
+    const ALL = JSON.parse(data.textContent);
+    const $ = id => document.getElementById(id);
+    let set = [], i = 0, score = 0;
+    const shuffle = a => { for (let k = a.length - 1; k > 0; k--) { const j = (Math.random() * (k + 1)) | 0; [a[k], a[j]] = [a[j], a[k]]; } return a; };
+    function start() { set = shuffle(ALL.slice()).slice(0, 10); i = 0; score = 0; $("q-end").hidden = true; $("q-opts").hidden = false; $("q-clue").hidden = false; show(); }
+    function show() {
+      const q = set[i];
+      $("q-n").textContent = "Clue " + (i + 1) + " / " + set.length; $("q-s").textContent = score; $("q-msg").textContent = "";
+      $("q-clue").textContent = q.clue;
+      const opts = shuffle([q.a, ...shuffle(ALL.filter(x => x.a !== q.a)).slice(0, 3).map(x => x.a)]);
+      $("q-opts").innerHTML = opts.map(o => `<button type="button">${o}</button>`).join("");
+      $("q-opts").querySelectorAll("button").forEach(b => b.addEventListener("click", () => pick(b, q.a)));
+    }
+    function pick(b, ans) {
+      const bs = $("q-opts").querySelectorAll("button");
+      bs.forEach(x => { x.disabled = true; if (x.textContent === ans) x.classList.add("ok"); });
+      if (b.textContent === ans) { score++; $("q-msg").textContent = "Correct. " + ans + "."; }
+      else { b.classList.add("no"); $("q-msg").textContent = "It was " + ans + "."; }
+      $("q-s").textContent = score;
+      setTimeout(() => { i++; if (i < set.length) show(); else end(); }, 1500);
+    }
+    function end() {
+      $("q-opts").hidden = true; $("q-clue").hidden = true; $("q-msg").textContent = "";
+      const line = score >= 9 ? "Fort-keeper." : score >= 6 ? "A seasoned climber." : score >= 3 ? "Keep climbing." : "Every climber starts at the base.";
+      $("q-final").textContent = score + " / " + set.length + ". " + line;
+      $("q-wa").href = "https://wa.me/?text=" + encodeURIComponent("I scored " + score + "/" + set.length + " on the Fort Quiz. Can you beat it? https://mahashivaji.org/shivcharitra.html#play");
+      $("q-end").hidden = false;
+    }
+    $("q-again").addEventListener("click", start);
+    start();
+  }
+})();

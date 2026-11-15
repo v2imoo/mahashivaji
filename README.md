@@ -4,6 +4,7 @@ A plain static site: no build step, no server code. Every file in this folder go
 
 ```
 index.html        Home
+strength.html     Strength first: the manifesto, twelve issues and answers, conduct
 begin.html        Begin with yourself: pledge, resolutions, self-resolve guides
 network.html      01 Connect · The Network
 ventures.html     02 Create · Ventures
@@ -11,8 +12,12 @@ academy.html      03 Develop · Academy
 contribute.html   04 Contribute
 civic-lab.html    05 Improve · Civic Lab
 frontier.html     06 Progress · Frontier Maharashtra
-library.html      The Archive: 39 files with search, filters, random pull and a keyboard viewer
-foundation.html   The Foundation: story, those who came before, inspiration, charter, panel, location
+shivcharitra.html Shivcharitra: free books, comics and games; the Fort Quiz
+forts.html        The Forts: 23 key forts, 12 UNESCO, with sources and maps
+maharashtra.html  36 Districts: Census 2011 figures, division filter, outreach
+d-*.html          One open profile page per district (36 files)
+library.html      The Archive: 41 files with search, filters, random pull and a keyboard viewer
+foundation.html   The Foundation: story, strengths we build on, inspiration, charter, panel, location
 404.html          Page not found
 assets/           site.css, site.js, fonts.css, fonts/, img/
 CNAME             mahashivaji.org (used by GitHub Pages)
@@ -65,3 +70,7 @@ Fonts are self-hosted (SIL Open Font License): Inter and Source Serif 4.
 - The home page plays a short boot sequence once per browser session. Any key or tap skips it. Visitors who set "reduce motion" never see it, and all other animation is switched off for them too.
 - The status bar clock shows India time. "Session" is a random four-character code made in the browser; nothing is tracked or sent anywhere.
 - To add a file to the Archive, add a line to the list in the build script, or copy one `<a class="item" ...>` block in library.html and change its link, title, description and data-stage / data-need / data-type values.
+
+## Updating district profiles
+
+Each d-<district>.html page has a "What this file will hold" list with six sections marked "Being compiled". As stewards verify material, replace a section's "Being compiled" tag with the content and its sources. District figures come from Census 2011; update them when the next census publishes district results.
